@@ -13,7 +13,7 @@ module.exports = {
 		console.log(`${message.author.tag} Said: ${message.content} in #${channel}`);
 
 		if (message.author.bot) return;
-		// if (message.member.permissions.has('MANAGE_MESSAGES')) return; // if they have the manage messages permission ignore wat ever they type.
+		if (message.member.permissions.has('MANAGE_MESSAGES')) return; // if they have the manage messages permission ignore wat ever they type.
 		const guildName = message.guild.name;
 		const mentionedMember = message.mentions.members.first();
 
