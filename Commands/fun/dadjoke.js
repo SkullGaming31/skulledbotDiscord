@@ -1,4 +1,3 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
 const { CommandInteraction, MessageEmbed } = require('discord.js');
 const axios = require('axios').default;
 
@@ -14,13 +13,6 @@ module.exports = {
 			required: false
 		}
 	],
-	// data: new SlashCommandBuilder()
-	// 	.setName('dadjoke')
-	// 	.setDescription('Replies with a random dad-joke')
-	// 	.addUserOption(option => 
-	// 		option.setName('target')
-	// 			.setDescription('the member you want to mention')
-	// 			.setRequired(false)),
 
 	/**
 	* 
@@ -37,7 +29,7 @@ module.exports = {
 			const response = await axios.get('https://icanhazdadjoke.com/', {
 				headers: {
 					'accept': 'application/json',
-					'User-Agent': 'Personal Twitch/Discord ChatBot (https://github.com/skullgaming31/skulledbot)'
+					'User-Agent': 'Personal Twitch/Discord ChatBot (https://github.com/skullgaming31/skulledbotDiscord)'
 				}
 			}); 
 			// console.log(response.data.joke); 
@@ -54,7 +46,7 @@ module.exports = {
 			const response = await axios.get('https://icanhazdadjoke.com/', {
 				headers: {
 					'accept': 'application/json',
-					'User-Agent': 'Personal Twitch/Discord ChatBot (https://github.com/skullgaming31/skulledbot)'
+					'User-Agent': 'Personal Twitch/Discord ChatBot (https://github.com/skullgaming31/skulledbotDiscord)'
 				}
 			}); 
 			const dadJokeEmbed = new MessageEmbed()

@@ -22,15 +22,15 @@ module.exports = {
 			permissionOverwrites: [
 				{
 					id: member.id,
-					allow: [Permissions.FLAGS.SEND_MESSAGES, Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.READ_MESSAGE_HISTORY],
+					allow: ['SEND_MESSAGES', 'VIEW_CHANNEL', 'READ_MESSAGE_HISTORY'],
 				},
 				{
 					id: config.DISCORD_EVERYONE_ROLE_ID,
-					deny: [Permissions.FLAGS.VIEW_CHANNEL]
+					deny: ['VIEW_CHANNEL']
 				},
 				{
 					id: config.DISCORD_BOT_ROLE_ID,
-					allow: [Permissions.FLAGS.SEND_MESSAGES, Permissions.FLAGS.EMBED_LINKS, Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.READ_MESSAGE_HISTORY],
+					allow: ['SEND_MESSAGES', 'EMBED_LINKS', 'VIEW_CHANNEL', 'READ_MESSAGE_HISTORY'],
 				}
 			]
 		}).then(async(channel) => {
@@ -56,13 +56,13 @@ module.exports = {
 				new MessageButton().setCustomId('claim').setLabel('Claim').setStyle('PRIMARY').setEmoji('🛄')
 			);
 			channel.send({ embeds: [embed], components: [Buttons] });
-			console.log(`${member} has created a ticket`);
+			console.log(`${member.user.username} has created a ticket`);
 			await channel.send({ content: `${member} here is your ticket` }).then((m) => {
 				setTimeout(() => {
 					m.delete().catch(() => {});
 				}, 1 * 5000);
 			});
-			interaction.reply({ content: `${member} your ticket has been created: ${channel}`, ephemeral: true });
+			interaction.followUp({ content: `${member} your ticket has been created: ${channel}`, ephemeral: true });
 		});
 	}
 };

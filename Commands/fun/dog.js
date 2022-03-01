@@ -1,4 +1,3 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
 const { CommandInteraction } = require('discord.js');
 // const fetch = require('node-fetch');
 const axios = require('axios').default;

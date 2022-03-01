@@ -1,7 +1,12 @@
-const config = require('../config');
 const mongoose = require('mongoose');
-require('./models/ticket');
+const config = require('../Structures/config');
 
 
-// mongoose.connect(`mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASS}@twitch.7ipbc.mongodb.net/${config.MONGO_DB}?retryWrites=true&w=majority`);
-// mongoose.connect(`mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASS}@twitch.7ipbc.mongodb.net/${config.MONGO_DB}?retryWrites=true&w=majority`)
+if (!config.MONGO_DATABASE) return;
+mongoose.connect(config.MONGO_DATABASE, {
+	user: config.MONGO_USERNAME,
+	pass: config.MONGO_PASSWORD,
+	dbName: 'Discord',
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+}).then(() => { console.log('Mongo Database Connected'); }).catch((err) => { console.error(err); });

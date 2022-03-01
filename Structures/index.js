@@ -5,9 +5,15 @@ const glob = require('glob');
 const PG = promisify(glob);
 const Ascii = require('ascii-table');
 const config = require('./config');
-const client = new Client({ intents: [ Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS ] });
-client.commands = new Collection();
+require('../database/index');
+const client = new Client({ intents: [ 
+	Intents.FLAGS.GUILDS, 
+	Intents.FLAGS.GUILD_MESSAGES, 
+	Intents.FLAGS.GUILD_MEMBERS 
+] 
+});
 
+client.commands = new Collection();
 ['Events', 'Commands'].forEach(handler => {
 	require(`../handlers/${handler}`)(client, PG, Ascii);
 });
