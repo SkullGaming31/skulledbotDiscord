@@ -23,7 +23,7 @@ module.exports = {
 		**Original**:\n ${Original} \n**Edited**: \n ${Edited}`)
 			.setFooter({ text: `Member: ${newMessage.author.tag} | ID: ${newMessage.author.id}` });
 
-		new WebhookClient({ url: 'https://discord.com/api/webhooks/943004055846940702/_ih2n_HNQrIxvOHcc77szU2_xxSQL_nr3WjV2yIpKjuoje17_X7T-g0DqvLntfZ-qXx_' }).send({embeds: [log]}).catch((err) => {
+		new WebhookClient({ url: 'https://discord.com/api/webhooks/953292735169822780/HLckBgpx7OG4awR2QZIL1jTWZr6-zeMINiFWlvDGyZDsyo0LkvwL-TyWxv8u412qRgwx' }).send({embeds: [log]}).catch((err) => {
 			console.error(err);
 		});
 	}

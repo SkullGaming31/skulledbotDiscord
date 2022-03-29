@@ -11,7 +11,7 @@ module.exports = {
    */
 	async execute(interaction) {
 		if (!interaction.isButton()) return;
-		if (!interaction.member.permissions.has('ADMINSTRATOR')) return interaction.reply({ content: 'you **cannot** use this button', ephemeral: true });
+		if (!interaction.member.permissions.has('ADMINISTRATOR')) return interaction.reply({ content: 'you **cannot** use this button', ephemeral: true });
 		const { guildId, customId, message } = interaction;
 
 		DB.findOne({ GuildID: guildId, MessageID: message.id}, async (err, data) => {

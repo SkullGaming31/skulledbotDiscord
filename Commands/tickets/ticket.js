@@ -4,7 +4,7 @@ const db = require('../../Structures/Schemas/Ticket');
 module.exports = {
 	name: 'ticket',
 	description: 'Ticket Actions',
-	permission: 'ADMINISTRATOR',
+	permission: 'MANAGE_MESSAGES',
 	options: [
 		{
 			name: 'action',

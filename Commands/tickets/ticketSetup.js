@@ -9,18 +9,20 @@ module.exports = {
  * @param {CommandInteraction} interaction 
  */
 	async execute(interaction) {
+		const { guild, channel } = interaction;
+		
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
-			.setAuthor({ name: `${interaction.guild.name} | Ticket System`, iconURL: interaction.guild.iconURL({ dynamic: true }) })
+			.setAuthor({ name: `${guild.name} | Ticket System`, iconURL: guild.iconURL({ dynamic: true }) })
 			.setDescription('Open a ticket to discuss any of the issues listed on the buttons')
-			.setThumbnail(interaction.guild.iconURL());
+			.setThumbnail(guild.iconURL())
+			.setFooter({ text: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}` });
 		const Buttons = new MessageActionRow();
 		Buttons.addComponents(
 			new MessageButton().setCustomId('player').setLabel('Member Report').setStyle('PRIMARY').setEmoji('🧧'),
-			new MessageButton().setCustomId('bug').setLabel('Bug Report').setStyle('SECONDARY').setEmoji('🐛'),
 			new MessageButton().setCustomId('support').setLabel('Support').setStyle('SUCCESS').setEmoji('✅')
 		);
-		await interaction.channel.send({ embeds: [embed], components: [Buttons] });
+		await channel.send({ embeds: [embed], components: [Buttons] });
 		interaction.reply({ content: 'done', ephemeral: true });
 	}
 };

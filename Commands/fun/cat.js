@@ -4,7 +4,7 @@ const axios = require('axios').default;
 module.exports = {
 	name: 'cat',
 	description: 'Sends a random picture of a cat',
-	permission: 'ADMINISTRATOR',
+	permission: 'SEND_MESSAGES',
 
 	/**
 	* @param {CommandInteraction} interaction

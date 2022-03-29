@@ -4,7 +4,7 @@ const axios = require('axios').default;
 module.exports = {
 	name: 'dadjoke',
 	description: 'Responds with a dadjoke',
-	permission: 'ADMINISTRATOR',
+	permission: 'SEND_MESSAGES',
 	options: [
 		{
 			name: 'target',

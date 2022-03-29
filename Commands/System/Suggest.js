@@ -3,8 +3,8 @@ const DB = require('../../Structures/Schemas/suggestDB');
 
 module.exports = {
 	name: 'suggest',
-	description: 'Create a suggestion in an orginized matter',
-	permission: 'ADMINISTRATOR',
+	description: 'give me a suggestion on how i could improve the discord or my twitch channel',
+	permission: 'SEND_MESSAGES',
 	options: [
 		{
 			name: 'type',
@@ -12,10 +12,8 @@ module.exports = {
 			type: 'STRING',
 			required: true,
 			choices: [
-				{ name: 'Command', value: 'Command' },
-				{ name: 'Event',  value: 'Event' },
-				{ name: 'System', value: 'System' },
-				{ name: 'Other', value: 'Other' }
+				{ name: 'Discord', value: 'Discord' },
+				{ name: 'Twitch',  value: 'Twitch' }
 			]
 		},
 		{

@@ -33,11 +33,12 @@ module.exports = {
 			return interaction.followUp({ content: `${interaction.user.tag}, you cant take action on this user as there role is highter then yours` });
 		}
 
+		interaction.deferReply();
 		if (!reason) reason = 'No Reason Provided';
 		const removedEmbed = new MessageEmbed()
 			.setTitle('KICKED')
 			.setAuthor({ name: `${User.username}`, iconURL: `${User.displayAvatarURL({ dynamic: true })}`})
-			.setColor('DARK_RED')
+			.setColor('RED')
 			.addField('Kicked from: ', `${guild.name}`, false)
 			.addField('Reason: ', `${reason}`, false)
 			.setFooter({ text: `${guild.name}`, iconURL: `${guild.iconURL({dynamic:true})}` })
@@ -47,6 +48,6 @@ module.exports = {
 			Target.kick( reason );
 		} catch (err) { console.error(err); console.log('users dm\'s are diabled'); }
 
-		interaction.followUp({ content: `kicked @${User.tag} Successfully, Reason: ${reason}`, embeds: [removedEmbed] });
+		interaction.followUp({ content: `kicked @${User.tag} Successfully`, embeds: [removedEmbed] });
 	}
 };

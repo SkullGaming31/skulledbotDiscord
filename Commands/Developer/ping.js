@@ -3,7 +3,7 @@ const { CommandInteraction, MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'ping',
 	description: 'Returns Pong',
-	permission: 'ADMINISTRATOR',
+	permission: 'SEND_MESSAGES',
 
 	/**
 	* @param {CommandInteraction} interaction

@@ -5,7 +5,7 @@ const axios = require('axios').default;
 module.exports = {
 	name: 'dog',
 	description: 'Sends a random picture of a dog',
-	permission: 'ADMINISTRATOR',
+	permission: 'SEND_MESSAGES',
 
 	/**
 	* 

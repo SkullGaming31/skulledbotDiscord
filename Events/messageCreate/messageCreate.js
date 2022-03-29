@@ -24,7 +24,8 @@ module.exports = {
 			if (mentionedMember.roles.cache.has(adminRole.id) || mentionedMember.roles.cache.has(modRole.id)) {
 				const warning = new MessageEmbed()
 					.setTitle('WARNING')
-					.setDescription('**Please do not ping a Moderator or Admin**')
+					.setAuthor({ name: `${message.author.username}`, iconURL: `${message.author.displayAvatarURL({ dynamic: true })}` })
+					.setDescription(`\`Please do not ping a Moderator or Admin\``)
 					.setColor('RED')
 					.setFooter({ text: `${guildName}` })
 					.setThumbnail(message.author.avatarURL({dynamic: true}));
@@ -33,6 +34,7 @@ module.exports = {
 			}
 		}
 		const OEChannelID = message.guild.channels.cache.get('837015934174625802');// TODO: Timer to stop messages going off everytime a discord member says overlay expert or help
+		if (message.member.roles.cache.has(adminRole.id) || message.member.roles.cache.has(modRole.id)) return;
 		if (message.content.includes('overlay expert') && message.guild.channels !== OEChannelID) {
 			await message.reply({ content: `Please use ${OEChannelID} for questions about Overlay Expert` });
 		}

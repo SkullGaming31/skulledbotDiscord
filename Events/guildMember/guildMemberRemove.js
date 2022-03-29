@@ -7,7 +7,7 @@ module.exports = {
   */
 	async execute (member) {
 	
-		console.log('Member left: ', member.displayName);
+		// console.log('Member left: ', member.displayName);
 		const targetChannel = member.guild.channels.cache.get('838158641072832562');// Logs Channel ID
 		
 		try {

@@ -19,7 +19,7 @@
             "windows"
         ],
         "quotes": [
-            "error",
+            "warning",
             "single"
         ],
         "semi": [

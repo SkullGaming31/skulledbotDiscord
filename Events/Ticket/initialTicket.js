@@ -12,7 +12,7 @@ module.exports = {
 	async execute(interaction) {
 		if (!interaction.isButton) return;
 		const {  guild, member, customId } = interaction;
-		if (!['player','bug','support'].includes(customId)) return;
+		if (!['player','support'].includes(customId)) return;
 
 		const ID = Math.floor(Math.random() * 90000) + 10000;
 
@@ -22,7 +22,7 @@ module.exports = {
 			permissionOverwrites: [
 				{
 					id: member.id,
-					allow: ['SEND_MESSAGES', 'VIEW_CHANNEL', 'READ_MESSAGE_HISTORY'],
+					allow: ['SEND_MESSAGES', 'VIEW_CHANNEL', 'READ_MESSAGE_HISTORY', 'ATTACH_FILES', 'EMBED_LINKS'],
 				},
 				{
 					id: config.DISCORD_EVERYONE_ROLE_ID,
@@ -52,11 +52,9 @@ module.exports = {
 			Buttons.addComponents(
 				new MessageButton().setCustomId('close').setLabel('Save And Close Ticket').setStyle('PRIMARY').setEmoji('💾'),
 				new MessageButton().setCustomId('lock').setLabel('Lock').setStyle('SECONDARY').setEmoji('🔒'),
-				new MessageButton().setCustomId('unlock').setLabel('Unlock').setStyle('SUCCESS').setEmoji('🔓'),
-				new MessageButton().setCustomId('claim').setLabel('Claim').setStyle('PRIMARY').setEmoji('🛄')
+				new MessageButton().setCustomId('unlock').setLabel('Unlock').setStyle('SUCCESS').setEmoji('🔓')
 			);
 			channel.send({ embeds: [embed], components: [Buttons] });
-			console.log(`${member.user.username} has created a ticket`);
 			await channel.send({ content: `${member} here is your ticket` }).then((m) => {
 				setTimeout(() => {
 					m.delete().catch(() => {});

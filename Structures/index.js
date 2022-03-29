@@ -5,7 +5,7 @@ const glob = require('glob');
 const PG = promisify(glob);
 const Ascii = require('ascii-table');
 const config = require('./config');
-require('../database/index');
+
 const client = new Client({ intents: [ 
 	Intents.FLAGS.GUILDS, 
 	Intents.FLAGS.GUILD_MESSAGES, 

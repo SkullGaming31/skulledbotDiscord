@@ -17,7 +17,7 @@ module.exports = {
 		if (message.attachments.size >= 1) {
 			log.addField('Attachments:', `${message.attachments.map(a => a.url)}`, true);
 		}
-		new WebhookClient({ url: 'https://discord.com/api/webhooks/943004055846940702/_ih2n_HNQrIxvOHcc77szU2_xxSQL_nr3WjV2yIpKjuoje17_X7T-g0DqvLntfZ-qXx_'}
+		new WebhookClient({ url: 'https://discord.com/api/webhooks/953292735169822780/HLckBgpx7OG4awR2QZIL1jTWZr6-zeMINiFWlvDGyZDsyo0LkvwL-TyWxv8u412qRgwx'}
 		).send({ embeds: [log]}).catch((err) => {
 			console.error(err);
 		});
