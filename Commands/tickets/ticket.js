@@ -1,5 +1,5 @@
-const { MessageEmbed, CommandInteraction, Permissions } = require('discord.js');
-const db = require('../../Structures/Schemas/Ticket');
+const { MessageEmbed, CommandInteraction } = require('discord.js');
+const DB = require('../../Structures/Schemas/Ticket');
 
 module.exports = {
 	name: 'ticket',
@@ -8,24 +8,24 @@ module.exports = {
 	options: [
 		{
 			name: 'action',
-			type: 'STRING',
 			description: 'add or remove a member from the ticket',
+			type: 'STRING',
 			required: true,
 			choices: [
 				{
-					name: 'add',
+					name: 'Add',
 					value: 'add'
 				},
 				{
-					name: 'remove',
+					name: 'Remove',
 					value: 'remove'
 				}
 			]
 		},
 		{
 			name: 'member',
+			description: 'add a member to the ticket',
 			type: 'USER',
-			description: 'Select a member',
 			required: true
 		}
 	],
@@ -42,7 +42,7 @@ module.exports = {
 
 		switch(Action) {
 		case 'add':
-			db.findOne({ GuildID: guildId, ChannelID: channel.id }, async (err, docs) => {
+			DB.findOne({ GuildID: guildId, ChannelID: channel.id }, async (err, docs) => {
 				if (err) throw err;
 				if (!docs) return interaction.reply({ embeds: [embed.setColor('RED').setDescription('⛔ | this channel is not tied with a ticket')], ephemeral: true });
 				if (docs.MembersID.includes(Member.id)) return interaction.reply({ embeds: [embed.setColor('RED').setDescription('⛔ | this member is already added to this ticket')], ephemeral: true });
@@ -50,14 +50,15 @@ module.exports = {
 				channel.permissionOverwrites.edit(Member.id, {
 					SEND_MESSAGES: true,
 					VIEW_CHANNEL: true,
-					READ_MESSAGE_HISTORY: true
+					READ_MESSAGE_HISTORY: true,
+					ATTACH_FILES: true
 				});
-				interaction.reply({ embeds: [embed.setColor('GREEN').setDescription(`✅ | ${Member} has been added to the ticket`)] });
+				interaction.reply({ content: `${Member}`, embeds: [embed.setColor('GREEN').setDescription(`✅ | ${Member} has been added to the ticket`)] });
 				docs.save();
 			});
 			break;
 		case 'remove':
-			db.findOne({ GuildID: guildId, ChannelID: channel.id }, async (err, docs) => {
+			DB.findOne({ GuildID: guildId, ChannelID: channel.id }, async (err, docs) => {
 				if (err) throw err;
 				if (!docs) return interaction.reply({ embeds: [embed.setColor('RED').setDescription('⛔ | this channel is not tied with a ticket')], ephemeral: true });
 				if (!docs.MembersID.includes(Member.id)) return interaction.reply({ embeds: [embed.setColor('RED').setDescription('⛔ | this member is not in this ticket')], ephemeral: true });

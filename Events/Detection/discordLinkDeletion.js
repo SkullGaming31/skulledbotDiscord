@@ -9,8 +9,8 @@ module.exports = {
 	 * @returns 
 	 */
 	async execute(message) {
+		const { guild } = message;
 		let sentInText = false;
-		const guildName = message.guild.name;
 		const logsChannel = process.env.DISCORD_LOGS_CHANNEL_ID;
 		const targetChannel = message.guild.channels.cache.find(channel => channel.id === logsChannel);
 		const discordInviteList = ['discord.com/invite/', 'discord.com/', 'discord.gg/', 'https://discord.com/invite/', 'https://discord.com/', 'https://discord.gg/', '.gift'];
@@ -22,9 +22,9 @@ module.exports = {
 					.setTitle('Discord Link Detected')
 					.setDescription(`:x: ${message.author} **Do not post discord links in this server.**`)
 					.setColor('RED')
-					.setFooter(`${guildName}`)
+					.setFooter({ text: `${guild.name}` })
 					.setThumbnail(message.author.avatarURL())
-					.setTimestamp(Date.now());
+					.setTimestamp();
 
 				sentInText = false;
 
@@ -36,7 +36,8 @@ module.exports = {
 					.setTitle('Automated Message Deletion')
 					.setDescription(`${message.author.username} posted ${message.content} in ${message.channel}`)
 					.setColor('PURPLE')
-					.setTimestamp(Date.now());
+					.setFooter({ text: `${guild.name}` })
+					.setTimestamp();
 
 				if (targetChannel.isText()) { await targetChannel.send({ embeds: [logsEmbed] });
 					if (!sentInText) break;

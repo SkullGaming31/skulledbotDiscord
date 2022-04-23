@@ -6,6 +6,8 @@ const PG = promisify(glob);
 const Ascii = require('ascii-table');
 const config = require('./config');
 
+require('../database/index');
+
 const client = new Client({ intents: [ 
 	Intents.FLAGS.GUILDS, 
 	Intents.FLAGS.GUILD_MESSAGES, 
@@ -13,10 +15,13 @@ const client = new Client({ intents: [
 ] 
 });
 
+require('../handlers/Anti-Crash')(client);
+
 client.commands = new Collection();
 ['Events', 'Commands'].forEach(handler => {
 	require(`../handlers/${handler}`)(client, PG, Ascii);
 });
+
 
 
 client.login(config.DISCORD_BOT_TOKEN);

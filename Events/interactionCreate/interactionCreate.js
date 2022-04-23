@@ -1,16 +1,19 @@
 const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
+const settingsDB = require('../../Structures/Schemas/settingsDB');
 module.exports = {
 	name: 'interactionCreate',
-
 	/**
 	 * 
 	 * @param {CommandInteraction} interaction 
-	 * @param {Client} client 
-	 * @returns 
+	 * @param {Client} client
 	 */
 
 	async execute(interaction, client) {
-		const logsChannel = process.env.DISCORD_LOGS_CHANNEL_ID;
+		const { guild } = interaction;
+
+		const Data = await settingsDB.findOne({ GuildID: guild.id });
+		if (!Data) return;
+		const logsChannel = Data.LoggingChannel;
 		const targetChannel = interaction.guild.channels.cache.find(channel => channel.id === logsChannel);// Logs Channel
 		const logsEmbed = new MessageEmbed()
 			.setTitle('Command Usage Detection')

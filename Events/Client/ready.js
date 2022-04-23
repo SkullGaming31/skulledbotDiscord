@@ -10,7 +10,7 @@ module.exports = {
 	 */
 	execute (client) {
 		console.log(`Logged in as ${client.user.tag}`);
-		client.user.setActivity('JavaScript', { type: 'WATCHING' });
+		client.user.setActivity('Skulled Army', { type: 'WATCHING' });
 		// client.guilds.cache.get('797740303176040498').commands.set([]); // remove ALL commands
 
 		if (!MONGO_DATABASE) return;

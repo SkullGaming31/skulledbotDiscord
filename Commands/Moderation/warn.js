@@ -29,16 +29,15 @@ module.exports = {
 		let reason = options.getString('reason');
 
 		try {
-			// await interaction.deferReply();
 			if (!reason) reason = 'No Reason Provided';
 
 			const warnningEmbed = new MessageEmbed()
 				.setTitle('WARNING')
-				.setAuthor({ name: `${Target.displayName}`, iconURL: `${User.displayAvatarURL({ dynamic: true })}` })
+				.setAuthor({ name: `${User}`, iconURL: `${User.displayAvatarURL({ dynamic: true })}` })
 				.addField('Reason: ', `\`${reason}\``, true)
 				.setThumbnail(`${User.displayAvatarURL({ dynamic: true })}`)
 				.setColor('RED');
-			interaction.reply({ embeds: [warnningEmbed] });
+			interaction.reply({ content: `${User}`, embeds: [warnningEmbed] });
 		} catch (error) {
 			console.error(error);
 		}

@@ -4,7 +4,6 @@ const DB = require('../../Structures/Schemas/suggestDB');
 
 module.exports = {
 	name: 'interactionCreate',
-
 	/**
    * 
    * @param {ButtonInteraction} interaction 
@@ -36,5 +35,6 @@ module.exports = {
 				break;
 			}
 		});
+		if (!DB) return;
 	}
 };

@@ -1,5 +1,4 @@
 const { CommandInteraction } = require('discord.js');
-// const fetch = require('node-fetch');
 const axios = require('axios').default;
 
 module.exports = {
@@ -17,7 +16,6 @@ module.exports = {
 				'accept': 'application/json'
 			}
 		});
-		await interaction.deferReply();
-		interaction.editReply({ files: [message] });
+		interaction.reply({ files: [message] });
 	},
 };

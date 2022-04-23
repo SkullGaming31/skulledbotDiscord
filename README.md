@@ -70,7 +70,7 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-a personal twitch chat bot for my twitch channel, will make it usable on other channels as i can, only a <strong>beginner</strong> coder as i learn how to do stuff i will add it to the bot!
+a personal Discord Bot for my Discord Server, will make it usable on other channels as i can, only a <strong>beginner</strong> coder as i learn how to do stuff i will add it to the bot!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -124,7 +124,12 @@ This is an example of how to list things you need to use the software and how to
 ## Roadmap
 
 
-* [ ] Ticket System? [in-Progress]
+* [x] link detect and delete(if not in correct channel)
+* [x] discord nitro .gift scam links automatically removed
+* [x] all discord invite links deleted when posted
+* [x] Ticket System
+* [x] Warning System
+* [ ] detect tweets by Overlay Expert and send them to announcments with @everyone tag!
 
 See the [open issues](https://github.com/skullgaming31/skulledbot/issues) for a full list of proposed features (and known issues).
 

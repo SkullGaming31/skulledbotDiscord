@@ -16,6 +16,9 @@ require('dotenv').config();
  * @prop {string} DISCORD_OPEN_TICKET_ID Open Ticket Channel ID
  * @prop {string} DISCORD_TRANSCRIPT_ID Transcript Channel ID
  * @prop {string} DISCORD_BOT_ROLE_ID Discord Bot Role ID
+ * @prop {string} WELCOMER_ID Welcomer Webhook ID
+ * @prop {string} WELCOMER_TOKEN Welcomer Webhook Token
+ * @prop {string} ERROR_LOG_CHANNEL channel where all logs are sent
  * @prop {string} MONGO_USERNAME Mongo DB Username
  * @prop {string} MONGO_PASSWORD Mongo DB Password
  * @prop {string} MONGO_DATABASE Mongo Database Name

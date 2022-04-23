@@ -42,7 +42,7 @@ module.exports = {
 		try {
 			switch(Action) {
 			case 'userinfo':
-				await interaction.deferReply();
+				await interaction.deferReply({ ephemeral: true });
 				if (Target) {
 					const taggedEmbed = new MessageEmbed()
 					.setColor('GREEN')
@@ -121,6 +121,7 @@ module.exports = {
 				break;
 			case 'serverinfo':
 				const { createdTimestamp, ownerId, description, members, memberCount, channels, emojis, stickers, premiumTier, premiumSubscriptionCount, roles } = guild;
+				await interaction.deferReply({ ephemeral: true });
 				const serverInfoEmbed = new MessageEmbed()
 				.setColor('BLUE')
 					.setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true }) || ''}` })
@@ -186,7 +187,7 @@ module.exports = {
 					.setFooter({ text: 'Last Checked' })
 					.setTimestamp();
 		
-				interaction.reply({ embeds: [serverInfoEmbed] });
+				interaction.editReply({ embeds: [serverInfoEmbed] });
 				break;
 			}
 		} catch (error) { console.error(error); }

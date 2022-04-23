@@ -16,8 +16,6 @@ module.exports = {
 				'User-Agent': 'Personal Twitch/Discord ChatBot (https://github.com/skullgaming31/skulledbot)'
 			}
 		});
-		// console.log(file);
-		await interaction.deferReply();
-		interaction.editReply({ files: [file] });
+		interaction.reply({ files: [file] });
 	},
 };

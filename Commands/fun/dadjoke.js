@@ -24,8 +24,8 @@ module.exports = {
 
 		const Target = interaction.options.getUser('target');
 
+		await interaction.deferReply();
 		if (Target) {
-			await interaction.deferReply();
 			const response = await axios.get('https://icanhazdadjoke.com/', {
 				headers: {
 					'accept': 'application/json',
@@ -42,7 +42,6 @@ module.exports = {
 				.setTimestamp();
 			interaction.editReply({ embeds: [targetDadJokeEmbed] });
 		} else {
-			await interaction.deferReply();
 			const response = await axios.get('https://icanhazdadjoke.com/', {
 				headers: {
 					'accept': 'application/json',
