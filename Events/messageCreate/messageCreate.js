@@ -1,5 +1,6 @@
 const { MessageEmbed, Message } = require('discord.js');
 const DB = require('../../Structures/Schemas/settingsDB');
+const { live } = require('../twitch/goingLive');
 
 module.exports = {
 	name: 'messageCreate',
@@ -37,11 +38,12 @@ module.exports = {
 						.setTimestamp();
 					message.reply({ embeds: [response] });
 				}
+
+				//Going LIVE posts
+				const promoteChannel = message.guild.channels.cache.get('799642035371638794');
 		
-				/* const timer = 2;
-				setInterval(() => {// done in seconds
+				setInterval(() => {// done in milliSeconds
 					try {
-						console.log(`${timer}` * 60 * 1000);
 						const spamChannel = guild.channels.cache.get('821768284436430858');
 						const facts = [
 							'After the Eiffel Tower was built, one person was killed during the installation of the lifts. No one was killed during the actual construction of the tower', 
@@ -58,7 +60,7 @@ module.exports = {
 						.setFooter({ text: 'Fact of the Day' })
 						spamChannel.send({ embeds: [factsEmbed] });
 					} catch (error) { console.error(error); }
-				}, timer * 60 * 1000); */
+				}, 86400000);
 		
 				/* if (mentionedMember) { // Anti-Ping System
 					if (mentionedMember.roles.cache.has(adminRole.id) || mentionedMember.roles.cache.has(modRole.id)) {

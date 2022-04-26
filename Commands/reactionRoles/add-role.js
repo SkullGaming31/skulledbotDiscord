@@ -38,6 +38,8 @@ module.exports = {
 
     const guildData = await ReactionRolesDB.findOne({ GuildID: guildId });
 
+    if (roleDescription <= 57 || roleDescription < 1) return interaction.reply({ content: 'your role description must be between 1 and 56 characters' });
+
     const newRole = {
       roleId: Role.id,
       roleDescription,

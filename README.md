@@ -28,7 +28,7 @@
     <img src="./assets/images/skulledbot.png" alt="Project Logo" width="80" height="80">
   </a>
 
-<h3 align="center">SkulledBot</h3>
+<h3 align="center">Skulled Bot V2</h3>
 
   <p align="center">
     Twitch Chatbot<br>
@@ -105,7 +105,7 @@ This is an example of how to list things you need to use the software and how to
 1. Create a Twitch Dev Application [Twitch Developer Application](https://dev.twitch.tv/console)
 2. Clone the repo
    ```sh
-   git clone https://github.com/skullgaming31/skulledbot.git
+   git clone https://github.com/skullgaming31/skulledbotDiscord.git
    ```
 3. Install NPM packages
    ```sh
@@ -129,9 +129,8 @@ This is an example of how to list things you need to use the software and how to
 * [x] all discord invite links deleted when posted
 * [x] Ticket System
 * [x] Warning System
-* [ ] detect tweets by Overlay Expert and send them to announcments with @everyone tag!
 
-See the [open issues](https://github.com/skullgaming31/skulledbot/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/skullgaming31/skulledbotDiscord/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -163,7 +162,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Corey - [@skullgaming31](https://twitter.com/skullgaming31) - skullgaming8461@gmail.com
 
-Project Link: [skulledbot](https://github.com/skullgaming31/skulledbot)
+Project Link: [Skulled Bot Discord V2](https://github.com/skullgaming31/skulledbotDiscord)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -178,14 +177,14 @@ Project Link: [skulledbot](https://github.com/skullgaming31/skulledbot)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/SkullGaming31/SkulledBot.svg?style=for-the-badge
-[contributors-url]: https://github.com/SkullGaming31/SkulledBot/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/SkullGaming31/SkulledBot.svg?style=for-the-badge
-[forks-url]: https://github.com/SkullGaming31/SkulledBot/network/members
-[stars-shield]: https://img.shields.io/github/stars/SkullGaming31/SkulledBot.svg?style=for-the-badge
-[stars-url]: https://github.com/SkullGaming31/SkulledBot/stargazers
-[issues-shield]: https://img.shields.io/github/issues/SkullGaming31/SkulledBot.svg?style=for-the-badge
-[issues-url]: https://github.com/SkullGaming31/SkulledBot/issues
-[license-shield]: https://img.shields.io/github/license/SkullGaming31/SkulledBot.svg?style=for-the-badge
-[license-url]: https://github.com/SkullGaming31/SkulledBot/blob/main/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/SkullGaming31/skulledbotDiscord.svg?style=for-the-badge
+[contributors-url]: https://github.com/SkullGaming31/skulledbotDiscord/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/SkullGaming31/skulledbotDiscord.svg?style=for-the-badge
+[forks-url]: https://github.com/SkullGaming31/skulledbotDiscord/network/members
+[stars-shield]: https://img.shields.io/github/stars/SkullGaming31/skulledbotDiscord.svg?style=for-the-badge
+[stars-url]: https://github.com/SkullGaming31/skulledbotDiscord/stargazers
+[issues-shield]: https://img.shields.io/github/issues/SkullGaming31/skulledbotDiscord.svg?style=for-the-badge
+[issues-url]: https://github.com/SkullGaming31/skulledbotDiscord/issues
+[license-shield]: https://img.shields.io/github/license/SkullGaming31/skulledbotDiscord.svg?style=for-the-badge
+[license-url]: https://github.com/SkullGaming31/skulledbotDiscord/blob/main/LICENSE
 [product-screenshot]: images/screenshot.png
