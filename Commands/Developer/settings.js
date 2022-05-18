@@ -8,31 +8,17 @@ module.exports = {
 	options: [
 		{
 			name: 'logging',
-			description: 'Select the Ticket creation channel',
+			description: 'Select the logging channel',
 			type: 'CHANNEL',
 			required: true,
 			channelTypes: ['GUILD_TEXT'],
 		},
 		{
 			name: 'nowlive',
-			description: 'Select the transcripts channel.',
+			description: 'Select the Now Live channel',
 			type: 'CHANNEL',
 			required: true,
 			channelType: ['GUILD_TEXT'],
-		},
-		{
-			name: 'support',
-			description: 'Select the role that will handle tickets',
-			type: 'CHANNEL',
-			required: true,
-			channelType: ['GUILD_TEXT'],
-		},
-		{
-			name: 'oesupport',
-			description: 'Support Channel For Overlay Expert',
-			type: 'CHANNEL',
-			required: true,
-			channelType: ['GUILD_TEXT']
 		},
 		{
 			name: 'admin',
@@ -46,6 +32,18 @@ module.exports = {
 			type: 'ROLE',
 			required: true,
 		},
+		/* {
+			name: 'support',
+			description: '',
+			type: 'CHANNEL',
+			channelType: ['GUILD_TEXT']
+		}, */
+		{
+			name: 'oesupport',
+			description: 'Support Channel For Overlay Expert',
+			type: 'CHANNEL',
+			channelType: ['GUILD_TEXT']
+		},
 	],
 	/**
 	 * @param {CommandInteraction} interaction
@@ -56,7 +54,7 @@ module.exports = {
 		try {
 			const Logging = options.getChannel('logging');
 			const NowLive = options.getChannel('nowlive');
-			const Support = options.getChannel('support');
+			// const Support = options.getChannel('support');
 			const OESupport = options.getChannel('oesupport');
 
 			const Administrator = options.getRole('admin');
@@ -67,7 +65,6 @@ module.exports = {
 				{
 					LoggingChannel: Logging.id,
 					PromotionChannel: NowLive.id,
-					SupportChannel: Support.id,
 					OESupportChannel: OESupport.id,
 					AdministratorRole: Administrator.id,
 					ModeratorRole: Moderator.id,

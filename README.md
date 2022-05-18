@@ -15,6 +15,38 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+
+<!-- 
+Discord Bot Scopes
+identify
+bot
+applications.commands
+connections
+messages.read
+guilds
+webhook.incoming
+guilds.members.read
+
+guilds.join
+email
+gdm.join
+rpc
+rpc.notifications.read
+applications.builds.read
+applications.builds.upload
+rpc.activities.write
+rpc.voice.write
+rpc.voice.read
+applications.store.update
+applications.entitlements
+activities.read
+activities.write
+relationships.read
+voice
+dm_channels.read 
+-->
+
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]

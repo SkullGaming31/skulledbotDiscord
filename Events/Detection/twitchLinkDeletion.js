@@ -1,4 +1,4 @@
-const { MessageEmbed, Message, TextChannel } = require('discord.js');
+const { MessageEmbed, Message } = require('discord.js');
 const DB = require('../../Structures/Schemas/settingsDB');
 require('dotenv').config();
 
@@ -24,7 +24,7 @@ module.exports = {
 			'https://github.com/', 'github.com/',
 		];
 		// if (message.member.permissions.has('MANAGE_MESSAGES')) return;
-				const targetChannel = message.guild.channels.cache.find(channel => channel.id === Data.LoggingChannel);// Logs Channel
+		const targetChannel = guild.channels.cache.find(channel => channel.id === Data.LoggingChannel);// Logs Channel
 		let foundInText = false;
 
 		const nowlive = message.guild.channels.cache.get(Data.PromotionChannel); // now-live ChannelID
@@ -40,7 +40,7 @@ module.exports = {
 						.setFooter({ text: `${guild.name}` })
 						.setThumbnail(message.author.avatarURL())
 						.setTimestamp();
-						
+
 					await message.channel.send({ embeds: [linkDetection] });
 					message.delete().catch((e) => { console.error(e); });
 					foundInText = false;

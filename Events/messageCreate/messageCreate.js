@@ -1,6 +1,5 @@
 const { MessageEmbed, Message } = require('discord.js');
 const DB = require('../../Structures/Schemas/settingsDB');
-const { live } = require('../twitch/goingLive');
 
 module.exports = {
 	name: 'messageCreate',
@@ -24,10 +23,10 @@ module.exports = {
 
 		const adminRole = guild.roles.cache.get(Data.AdministratorRole); // Admin Role ID
 		const modRole = guild.roles.cache.get(Data.ModeratorRole); // Moderator Role ID
-		const OESupport = guild.channels.cache.get(Data.OESupportChannel);
 
-		switch(guildId) {
+		switch (guildId) {
 			case '797740303176040498':
+				const OESupport = guild.channels.cache.get(Data.OESupportChannel);
 				if (message.content.includes('overlay expert') && message.content.endsWith('?') && channelId !== OESupport) {
 					const response = new MessageEmbed()
 						.setColor('RANDOM')
@@ -40,28 +39,27 @@ module.exports = {
 				}
 
 				//Going LIVE posts
-				const promoteChannel = message.guild.channels.cache.get('799642035371638794');
-		
+
 				setInterval(() => {// done in milliSeconds
 					try {
 						const spamChannel = guild.channels.cache.get('821768284436430858');
 						const facts = [
-							'After the Eiffel Tower was built, one person was killed during the installation of the lifts. No one was killed during the actual construction of the tower', 
-							'The first toilet tank ever seen on television was on Leave it to Beaver', 
-							'Only one person in two billion will live to be 116 or older', 
+							'After the Eiffel Tower was built, one person was killed during the installation of the lifts. No one was killed during the actual construction of the tower',
+							'The first toilet tank ever seen on television was on Leave it to Beaver',
+							'Only one person in two billion will live to be 116 or older',
 							'The Great Pyramids used to be as white as snow because they were encased in a bright limestone that has worn off over the years'
 						];
 						let randomFact = facts[Math.floor(Math.random() * facts.length)];
 						const factsEmbed = new MessageEmbed()
-						.setTitle('Fact')
-						.setDescription(`\`${randomFact}\``)
-						.setThumbnail(`${guild.iconURL({ dynamic: true }) || ''}`)
-						.setColor('RANDOM')
-						.setFooter({ text: 'Fact of the Day' })
+							.setTitle('Fact')
+							.setDescription(`\`${randomFact}\``)
+							.setThumbnail(`${guild.iconURL({ dynamic: true }) || ''}`)
+							.setColor('RANDOM')
+							.setFooter({ text: 'Fact of the Day' })
 						spamChannel.send({ embeds: [factsEmbed] });
 					} catch (error) { console.error(error); }
 				}, 86400000);
-		
+
 				/* if (mentionedMember) { // Anti-Ping System
 					if (mentionedMember.roles.cache.has(adminRole.id) || mentionedMember.roles.cache.has(modRole.id)) {
 						const warning = new MessageEmbed()

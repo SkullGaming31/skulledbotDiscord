@@ -8,17 +8,18 @@ const config = require('./config');
 
 require('../database/index');
 
-const client = new Client({ intents: [ 
-	Intents.FLAGS.GUILDS, 
-	Intents.FLAGS.GUILD_MESSAGES, 
-	Intents.FLAGS.GUILD_MEMBERS 
-] 
+const client = new Client({
+	intents: [
+		Intents.FLAGS.GUILDS,
+		Intents.FLAGS.GUILD_MESSAGES,
+		Intents.FLAGS.GUILD_MEMBERS
+	]
 });
 
-require('../handlers/Anti-Crash')(client);
+// require('../handlers/Anti-Crash')(client);
 
 client.commands = new Collection();
-['Events', 'Commands'].forEach(handler => {
+['Events', 'Commands', 'Anti-Crash'].forEach(handler => {
 	require(`../handlers/${handler}`)(client, PG, Ascii);
 });
 

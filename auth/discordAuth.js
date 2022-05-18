@@ -1,8 +1,5 @@
 const express = require('express');
 const axios = require('axios').default;
-const fetch = import('node-fetch');
-
-const config = require('../../skulledbotTwitch/config');
 
 const discordRouter = express.Router();
 
