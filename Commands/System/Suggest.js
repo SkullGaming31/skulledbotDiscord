@@ -3,7 +3,7 @@ const DB = require('../../Structures/Schemas/suggestDB');
 
 module.exports = {
 	name: 'suggest',
-	description: 'give me a suggestion on how i could improve the discord or my twitch channel',
+	description: 'give me a suggestion on how i could improve the discord or the DayZ Server',
 	permission: 'SEND_MESSAGES',
 	options: [
 		{
@@ -13,7 +13,7 @@ module.exports = {
 			required: true,
 			choices: [
 				{ name: 'Discord', value: 'Discord' },
-				{ name: 'Twitch', value: 'Twitch' }
+				{ name: 'Server', value: 'Server' }
 			]
 		},
 		{
@@ -34,7 +34,7 @@ module.exports = {
 		const Type = options.getString('type');
 		const Suggestion = options.getString('suggestion');
 
-		const suggestionChannel = guild.channels.cache.get('835420636750938114');
+		const suggestionChannel = guild.channels.cache.get('985459316003852308');// suggestions channel for the DayZ server.
 
 		const Response = new MessageEmbed()
 			.setColor('NAVY')

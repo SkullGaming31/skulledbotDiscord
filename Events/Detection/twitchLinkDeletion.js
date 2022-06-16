@@ -24,6 +24,7 @@ module.exports = {
 			'https://github.com/', 'github.com/',
 		];
 		// if (message.member.permissions.has('MANAGE_MESSAGES')) return;
+		// if (member.roles.cache.find(role => role.name === 'v.i.p')) return;
 		const targetChannel = guild.channels.cache.find(channel => channel.id === Data.LoggingChannel);// Logs Channel
 		let foundInText = false;
 
@@ -31,7 +32,7 @@ module.exports = {
 		for (const link in linkWhitelist) {
 			if (message.author.bot) return;
 			if (message.content.toLowerCase().includes(linkWhitelist[link].toLowerCase())) { foundInText = true; }
-			if (foundInText && message.channelId !== nowlive) {// NOW LIVE Channel ID
+			if (foundInText && message.channelId !== nowlive) {
 				try {
 					const linkDetection = new MessageEmbed()
 						.setTitle('Link Detected')
@@ -48,10 +49,10 @@ module.exports = {
 					const logsEmbed = new MessageEmbed()
 						.setTitle('Automated Message Deletion')
 						.setColor('PURPLE')
-						.setAuthor({ name: `${message.author.username}`, iconURL: `${message.author.avatarURL({ dynamic: true })}` })
+						.setAuthor({ name: `${message.author.username}`, iconURL: `${message.author.avatarURL({ dynamic: true }) || ''}` })
 						.setDescription(`${message.author.username} posted ${message.content} in ${message.channel}`)
 						.setFooter({ text: `${guild.name}` })
-						.setThumbnail(`${message.author.avatarURL({ dynamic: true })}`)
+						.setThumbnail(`${message.author.avatarURL({ dynamic: true }) || ''}`)
 						.setTimestamp();
 					if (targetChannel.isText()) await targetChannel.send({ embeds: [logsEmbed] });
 					if (!foundInText) break;

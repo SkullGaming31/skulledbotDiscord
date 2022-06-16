@@ -13,6 +13,9 @@ require('dotenv').config();
  * @prop {string} MONGO_PASSWORD Mongo DB Password
  * @prop {string} MONGO_DATABASE Mongo Database Name
  * @prop {string} MONGO_HOST Mongo Database Host
+ * @prop {string} NITRADO_API Api key to access the nitrado services through the api
+ * @prop {string} NITRADO_USERNAME Username to access Nitrado
+ * @prop {string} NITRADO_ID ID for the Game Server
  */
 
 /**

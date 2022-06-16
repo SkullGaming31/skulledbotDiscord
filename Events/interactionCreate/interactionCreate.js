@@ -10,7 +10,7 @@ module.exports = {
 
 	async execute(interaction, client) {
 		const { guild } = interaction;
-		console.log('command used');
+		// console.log('command used');
 
 		if (interaction.isCommand() || interaction.isContextMenu()) {
 			const command = client.commands.get(interaction.commandName);
