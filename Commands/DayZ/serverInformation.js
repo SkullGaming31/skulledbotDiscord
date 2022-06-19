@@ -89,9 +89,11 @@ module.exports = {
 				interaction.reply({ embeds: [server], ephemeral: true });
 				break;
 			case 'Restart':
+				if (!member.permissions.has('MANAGE_MESSAGES')) return interaction.reply({ content: 'you do not have permission to use this command', ephemeral: true });
 				interaction.reply({ content: 'Not Currently Working yet', ephemeral: true });
 				break;
 			case 'Stop':
+				if (!member.permissions.has('MANAGE_MESSAGES')) return interaction.reply({ content: 'you do not have permission to use this command', ephemeral: true });
 				interaction.reply({ content: 'Not Currently Working yet', ephemeral: true });
 				break;
 		}
