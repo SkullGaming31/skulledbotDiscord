@@ -1,6 +1,6 @@
 const { CommandInteraction, MessageEmbed } = require('discord.js');
 const axios = require('axios').default;
-const config = require('../../Structures/config');
+const { NITRADO_API, NITRADO_ID } = require('../../Structures/config');
 
 module.exports = {
 	name: 'dayd',
@@ -44,15 +44,6 @@ module.exports = {
 
 		const Action = options.getString('action');
 		const Restart = options.getMember('restart_message');
-		/* const nitrado = axios.create({ baseURL: `https://api.nitrado.net/services/${config.NITRADO_ID}/gameservers` });
-
-		nitrado.post('/restart', {
-			headers: {
-				'Authorization': `Bearer ${config.NITRADO_API}`,
-				'Accept': 'application/json',
-				'User-Agent': 'axios/0.26.1'
-			}
-		}); */
 
 		switch (Action) {
 			case 'Serverinfo':
@@ -89,6 +80,15 @@ module.exports = {
 				interaction.reply({ embeds: [server], ephemeral: true });
 				break;
 			case 'Restart':
+				/* const nitrado = axios.create({ baseURL: `https://api.nitrado.net/services/${NITRADO_ID}/gameservers` });
+
+				nitrado.post('/restart', {
+					headers: {
+						'Authorization': `Bearer ${NITRADO_API}`,
+						'Accept': 'application/json',
+						'User-Agent': 'Personal Discord Bot (https://github.com/skullgaming31/skulledbotDiscord)'
+					}
+				}); */
 				if (!member.permissions.has('MANAGE_MESSAGES')) return interaction.reply({ content: 'you do not have permission to use this command', ephemeral: true });
 				interaction.reply({ content: 'Not Currently Working yet', ephemeral: true });
 				break;

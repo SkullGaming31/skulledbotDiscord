@@ -8,9 +8,10 @@ module.exports = {
 	/**
 	 * @param {Client} client 
 	 */
-	execute (client) {
+	async execute(client) {
 		console.log(`Logged in as ${client.user.tag}`);
-		client.user.setActivity('Skulled Army', { type: 'WATCHING' });
+		const tbd = await client.guilds.fetch();
+		client.user.setActivity(` over ${tbd.size} guilds`, { type: 'WATCHING' });
 		// client.guilds.cache.get('797740303176040498').commands.set([]); // remove ALL commands
 
 		if (!MONGO_DATABASE) return;
