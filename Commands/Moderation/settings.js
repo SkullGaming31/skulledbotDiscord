@@ -41,7 +41,8 @@ module.exports = {
 		{
 			name: 'suggestions',
 			description: 'Choose your suggestion channel for all suggestions to be posted too',
-			type: 'STRING',
+			type: 'CHANNEL',
+			channelType: ['GUILD_TEXT'],
 			required: false
 		}
 	],
