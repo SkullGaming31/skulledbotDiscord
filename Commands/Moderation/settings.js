@@ -14,13 +14,6 @@ module.exports = {
 			channelTypes: ['GUILD_TEXT'],
 		},
 		{
-			name: 'nowlive',
-			description: 'Select the Now Live channel',
-			type: 'CHANNEL',
-			required: true,
-			channelType: ['GUILD_TEXT'],
-		},
-		{
 			name: 'admin',
 			description: 'Select your administrator role',
 			type: 'ROLE',
@@ -32,18 +25,25 @@ module.exports = {
 			type: 'ROLE',
 			required: true,
 		},
-		/* {
-			name: 'support',
-			description: '',
+		{
+			name: 'nowlive',
+			description: 'Select the Now Live channel',
 			type: 'CHANNEL',
-			channelType: ['GUILD_TEXT']
-		}, */
+			required: false,
+			channelType: ['GUILD_TEXT'],
+		},
 		{
 			name: 'oesupport',
 			description: 'Support Channel For Overlay Expert',
 			type: 'CHANNEL',
 			channelType: ['GUILD_TEXT']
 		},
+		{
+			name: 'suggestions',
+			description: 'Choose your suggestion channel for all suggestions to be posted too',
+			type: 'STRING',
+			required: false
+		}
 	],
 	/**
 	 * @param {CommandInteraction} interaction
@@ -54,8 +54,8 @@ module.exports = {
 		try {
 			const Logging = options.getChannel('logging');
 			const NowLive = options.getChannel('nowlive');
-			// const Support = options.getChannel('support');
 			const OESupport = options.getChannel('oesupport');
+			const Suggestions = options.getChannel('suggestions');
 
 			const Administrator = options.getRole('admin');
 			const Moderator = options.getRole('moderator');
@@ -68,6 +68,7 @@ module.exports = {
 					OESupportChannel: OESupport.id,
 					AdministratorRole: Administrator.id,
 					ModeratorRole: Moderator.id,
+					SuggestionsChannel: Suggestions.id
 				},
 				{
 					new: true,

@@ -1,5 +1,6 @@
 const { CommandInteraction, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const DB = require('../../Structures/Schemas/suggestDB');
+const settingsDB = require('../../Structures/Schemas/settingsDB');
 
 module.exports = {
 	name: 'suggest',
@@ -34,7 +35,10 @@ module.exports = {
 		const Type = options.getString('type');
 		const Suggestion = options.getString('suggestion');
 
-		const suggestionChannel = guild.channels.cache.get('985459316003852308');// suggestions channel for the DayZ server.
+		const Settings = await settingsDB.findOne({ GuildID: guildId });
+		if (!Settings) return;
+
+		const suggestionChannel = guild.channels.cache.get(Settings.Suggestions);// suggestions channel
 
 		const Response = new MessageEmbed()
 			.setColor('NAVY')

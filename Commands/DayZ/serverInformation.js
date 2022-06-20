@@ -40,10 +40,12 @@ module.exports = {
 	 * @param {CommandInteraction} interaction 
 	 */
 	async execute(interaction) {
-		const { options, user, member } = interaction;
+		const { options, user, member, guild } = interaction;
 
 		const Action = options.getString('action');
 		const Restart = options.getMember('restart_message');
+
+		if (guild.id !== '985309600347717672') return interaction.reply({ content: 'Sorry but this command is for a DayZ Discord only.' });
 
 		switch (Action) {
 			case 'Serverinfo':
