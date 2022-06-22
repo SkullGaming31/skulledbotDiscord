@@ -10,15 +10,17 @@ module.exports = {
 	 * @returns 
 	 */
 	async execute(message) {
-		const { guild } = message;
+		const { guild, member } = message;
 
 		const Data = await settingsDB.findOne({ GuildID: guild.id });
 		if (!Data) return;
 
+		if (member.permissions.has('MANAGE_MESSAGES')) return;
+
 		if (guild.id !== '797740303176040498') return;
 
 		// const logsChannel = process.env.DISCORD_LOGS_CHANNEL_ID;
-		const targetChannel = message.guild.channels.cache.find(channel => channel.id === Data.LoggingChannel);
+		const targetChannel = guild.channels.cache.find(channel => channel.id === Data.LoggingChannel);
 		const discordInviteList = ['discord.com/invite/', 'discord.com/', 'discord.gg/', 'https://discord.com/invite/', 'https://discord.com/', 'https://discord.gg/', '.gift'];
 
 		let sentInText = false;
