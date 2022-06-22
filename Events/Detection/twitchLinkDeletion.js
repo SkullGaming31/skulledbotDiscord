@@ -27,7 +27,7 @@ module.exports = {
 		const targetChannel = guild.channels.cache.find(channel => channel.id === Data.LoggingChannel);// Logs Channel
 		let foundInText = false;
 
-		const nowlive = message.guild.channels.cache.get(Data.PromotionChannel); // now-live ChannelID
+		const nowlive = message.guild.channels.cache.get('799642035371638794'); // now-live ChannelID Data.PromotionChannel
 		for (const link in linkWhitelist) {
 			if (message.author.bot) return;
 			if (message.content.toLowerCase().includes(linkWhitelist[link].toLowerCase())) { foundInText = true; }
