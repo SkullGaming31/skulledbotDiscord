@@ -22,7 +22,7 @@ module.exports = {
 			'https://tiktok.com/', 'tiktok.com/',
 			'https://github.com/', 'github.com/',
 		];
-		if (message.member.permissions.has('MANAGE_MESSAGES')) return;
+		// if (message.member.permissions.has('MANAGE_MESSAGES')) return;
 		// if (member.roles.cache.find(role => role.name === 'v.i.p')) return;
 		const targetChannel = guild.channels.cache.find(channel => channel.id === Data.LoggingChannel);// Logs Channel
 		let foundInText = false;

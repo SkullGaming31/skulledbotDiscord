@@ -15,7 +15,7 @@ module.exports = {
 		const Data = await settingsDB.findOne({ GuildID: guild.id });
 		if (!Data) return;
 
-		if (member.permissions.has('MANAGE_MESSAGES')) return;
+		// if (member.permissions.has('MANAGE_MESSAGES')) return;
 
 		if (guild.id !== '797740303176040498') return;
 

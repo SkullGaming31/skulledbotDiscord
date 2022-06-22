@@ -3,7 +3,7 @@ const { CommandInteraction, MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'warn',
 	description: 'Warn a user before taking action',
-	permission: 'MANAGE_MESSAGES', 
+	permission: 'MANAGE_MESSAGES',
 	options: [
 		{
 			name: 'target',
@@ -19,8 +19,8 @@ module.exports = {
 		}
 	],
 	/**
-   * @param {CommandInteraction} interaction 
-   */
+	 * @param {CommandInteraction} interaction 
+	 */
 	async execute(interaction) {
 		const { options, guild } = interaction;
 
