@@ -45,10 +45,16 @@ module.exports = {
 		const Action = options.getString('action');
 		const Restart = options.getMember('restart_message');
 
-		if (guild.id !== '985309600347717672') return interaction.reply({ content: 'Sorry but this command is for a DayZ Discord only.', ephemeral: true });
+		// if (guild.id !== '985309600347717672') return interaction.reply({ content: 'Sorry but this command is for a DayZ Discord only.', ephemeral: true });
 
 		switch (Action) {
 			case 'Serverinfo':
+				// const response = await axios.get('https://api.nitrado.net/services/11207410/gameservers', {
+				// 	headers: {
+				// 		'Authorization': `Bearer ${NITRADO_API}`
+				// 	}
+				// });
+				// console.log(response);
 				const server = new MessageEmbed()
 					.setColor('RANDOM')
 					.setAuthor({ name: `${user.tag}`, iconURL: `${user.displayAvatarURL({ dynamic: true, size: 512 })}` })
@@ -67,6 +73,11 @@ module.exports = {
 							name: 'Map',
 							value: 'chernarusplus',
 							inline: true
+						},
+						{
+							name: 'Platform',
+							value: 'XBOX',
+							inline: true,
 						},
 						{
 							name: 'Players Online: ',
