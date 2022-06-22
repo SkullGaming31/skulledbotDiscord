@@ -36,9 +36,8 @@ module.exports = {
 		const Suggestion = options.getString('suggestion');
 
 		const Settings = await settingsDB.findOne({ GuildID: guildId });
-		if (!Settings) return;
 
-		const suggestionChannel = guild.channels.cache.get(Settings.Suggestions);// suggestions channel
+		const suggestionChannel = guild.channels.cache.get(Settings.SuggestionsChannel);// suggestions channel
 
 		const Response = new MessageEmbed()
 			.setColor('NAVY')
@@ -70,5 +69,6 @@ module.exports = {
 		} catch (error) {
 			console.log(error);
 		}
+		if (!Settings) return;
 	}
 };

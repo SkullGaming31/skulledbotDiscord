@@ -45,7 +45,7 @@ module.exports = {
 		const Action = options.getString('action');
 		const Restart = options.getMember('restart_message');
 
-		if (guild.id !== '985309600347717672') return interaction.reply({ content: 'Sorry but this command is for a DayZ Discord only.' });
+		if (guild.id !== '985309600347717672') return interaction.reply({ content: 'Sorry but this command is for a DayZ Discord only.', ephemeral: true });
 
 		switch (Action) {
 			case 'Serverinfo':

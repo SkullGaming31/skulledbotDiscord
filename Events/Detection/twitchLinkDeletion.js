@@ -13,7 +13,6 @@ module.exports = {
 	async execute(message) {
 		const { guild, member } = message;
 		const Data = await DB.findOne({ GuildID: guild.id });
-		if (!Data) return;
 
 		// const nowLive = process.env.DISCORD_PROMOTE_CHANNEL_ID;
 		const linkWhitelist = [
@@ -63,5 +62,6 @@ module.exports = {
 				}
 			}
 		}
+		if (!Data) return;
 	},
 };

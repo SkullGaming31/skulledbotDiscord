@@ -4,7 +4,7 @@ module.exports = model('settings', new Schema({
 	GuildID: String,
 	LoggingChannel: String,
 	PromotionChannel: String,
-	OESupportChannel: String,
 	AdministratorRole: String,
-	ModeratorRole: String
+	ModeratorRole: String,
+	SuggestionsChannel: String,
 }));

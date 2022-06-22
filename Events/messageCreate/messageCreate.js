@@ -25,18 +25,7 @@ module.exports = {
 		const modRole = guild.roles.cache.get(Data.ModeratorRole); // Moderator Role ID
 
 		switch (guildId) {
-			case '797740303176040498':
-				const OESupport = guild.channels.cache.get(Data.OESupportChannel);
-				if (message.content.includes('overlay expert') && message.content.endsWith('?') && channelId !== OESupport) {
-					const response = new MessageEmbed()
-						.setColor('RANDOM')
-						.setAuthor({ name: `${author.username}`, iconURL: `${author.displayAvatarURL({ dynamic: true })}` })
-						.setDescription(`Someone will be with you as soon as they are free remember we have lives just like you, 
-															to help us out please provide as much information as you can about your issue in ${OESupport}`)
-						.setFooter({ text: `${guild.name}` })
-						.setTimestamp();
-					message.reply({ embeds: [response] });
-				}
+			case '797740303176040498':// My Guild
 
 				//Going LIVE posts
 
@@ -77,9 +66,9 @@ module.exports = {
 				break;
 			case '819180459950473236':// modvlogs guild
 				break;
-			case '722110257911824445':
+			case '722110257911824445':// dayz server discord
 				break;
-			case '985309600347717672':
+			case '985309600347717672': // lonnys guild
 				break;
 		}
 	},
