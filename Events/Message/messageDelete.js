@@ -10,6 +10,7 @@ module.exports = {
 	 */
 	async execute(message) {
 		if (message.author.bot) return;
+		const { guild } = message;
 		const Data = await settings.findOne({ GuildID: guild.id });
 
 		const log = new MessageEmbed()
@@ -19,7 +20,7 @@ module.exports = {
 		if (message.attachments.size >= 1) {
 			log.addField('Attachments:', `${message.attachments.map(a => a.url)}`, true);
 		}
-		message.guild.channels.cache.get(Data.LoggingChannel).send({ embeds: [log] });
+		guild.channels.cache.get(Data.LoggingChannel).send({ embeds: [log] });
 		// new WebhookClient({ url: 'https://discord.com/api/webhooks/953292735169822780/HLckBgpx7OG4awR2QZIL1jTWZr6-zeMINiFWlvDGyZDsyo0LkvwL-TyWxv8u412qRgwx'}
 		// ).send({ embeds: [log]}).catch((err) => {
 		// 	console.error(err);
