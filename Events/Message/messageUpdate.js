@@ -12,6 +12,7 @@ module.exports = {
 		if (oldMessage.author.bot) return;
 
 		if (oldMessage.content === newMessage.content) return;
+		const { guild } = newMessage;
 		const Data = await settings.findOne({ GuildID: guild.id });
 
 		const Count = 1950;
@@ -28,7 +29,7 @@ module.exports = {
 		// new WebhookClient({ url: 'https://discord.com/api/webhooks/953292735169822780/HLckBgpx7OG4awR2QZIL1jTWZr6-zeMINiFWlvDGyZDsyo0LkvwL-TyWxv8u412qRgwx' }).send({embeds: [log]}).catch((err) => {
 		// 	console.error(err);
 		// });
-		newMessage.guild.channels.cache.get(Data.LoggingChannel).send({ embeds: [log] });
+		guild.channels.cache.get(Data.LoggingChannel).send({ embeds: [log] });
 		if (!Data) return;
 	}
 };
