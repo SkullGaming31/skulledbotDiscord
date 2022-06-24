@@ -1,4 +1,5 @@
 const { MessageEmbed, Message, WebhookClient } = require('discord.js');
+const settings = require('../../Structures/Schemas/settingsDB');
 
 module.exports = {
 	name: 'messageDelete',
@@ -9,6 +10,7 @@ module.exports = {
 	 */
 	async execute(message) {
 		if (message.author.bot) return;
+		const Data = await settings.findOne({ GuildID: guild.id });
 
 		const log = new MessageEmbed()
 			.setColor('GREEN')
@@ -17,9 +19,11 @@ module.exports = {
 		if (message.attachments.size >= 1) {
 			log.addField('Attachments:', `${message.attachments.map(a => a.url)}`, true);
 		}
-		new WebhookClient({ url: 'https://discord.com/api/webhooks/953292735169822780/HLckBgpx7OG4awR2QZIL1jTWZr6-zeMINiFWlvDGyZDsyo0LkvwL-TyWxv8u412qRgwx'}
-		).send({ embeds: [log]}).catch((err) => {
-			console.error(err);
-		});
+		message.guild.channels.cache.get(Data.LoggingChannel).send({ embeds: [log] });
+		// new WebhookClient({ url: 'https://discord.com/api/webhooks/953292735169822780/HLckBgpx7OG4awR2QZIL1jTWZr6-zeMINiFWlvDGyZDsyo0LkvwL-TyWxv8u412qRgwx'}
+		// ).send({ embeds: [log]}).catch((err) => {
+		// 	console.error(err);
+		// });
+		if (!Data) return;
 	}
 };

@@ -1,5 +1,7 @@
 const { MessageEmbed, Message } = require('discord.js');
 const DB = require('../../Structures/Schemas/settingsDB');
+const { NITRADO_API, NITRADO_ID } = require('../../Structures/config');
+const axios = require('axios');
 
 module.exports = {
 	name: 'messageCreate',
@@ -14,7 +16,17 @@ module.exports = {
 		console.log(`${message.author.tag} Said: ${message.content} in #${channel}`);
 
 		if (message.author.bot) return;
+		// const response = await axios.get('https://api.nitrado.net/services/11207410/gameservers', {
+		// 	headers: {
+		// 		'Authorization': `Bearer ${NITRADO_API}`,
+		// 		'Accept': 'application/json',
+		// 		'User-Agent': 'Personal Discord Bot (https://github.com/skullgaming31/skulledbotDiscord)'
+		// 	}
+		// });
 		const { author, guild, guildId, member, channelId } = message;
+		setInterval(() => {
+			// guild.channels.cache.get('989220503254351943').setName(`Online: ${response.data.data.gameserver.query.player_current || '0'}`);
+		}, 600000);
 		// if (member.permissions.has('MANAGE_MESSAGES')) return; // if they have the manage messages permission ignore wat ever they type.
 		const mentionedMember = message.mentions.members.first();
 
