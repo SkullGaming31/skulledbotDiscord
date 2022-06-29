@@ -6,16 +6,16 @@ module.exports = {
 	* @param {GuildMember} member 
 	*/
 	async execute(member) {
-		const { guild } = member;
+		const { guild, user } = member;
 
-		console.log('Member left: ', member);
+		// console.log('Member left: ', member);
 		const personalDiscord = guild.channels.cache.get('838158641072832562');// personal discord Logs Channel ID
 		const daydDiscord = guild.channels.cache.get('989110717837873172');// dayd discord Logs Channel ID
 
 		const embed = new MessageEmbed()
 			.setTitle('MEMBER LEFT')
 			.setColor('RED')
-			.setDescription(`\`${member.user}\` left the server`)
+			.setDescription(`\`${user.username}\` left the server`)
 			.setFooter({ text: `${member.id}`, iconURL: `${guild.iconURL({ dynamic: true }) || ''}` });
 
 		try {
