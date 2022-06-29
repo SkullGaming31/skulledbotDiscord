@@ -1,4 +1,5 @@
-const { Guild, MessageEmbed, WebhookClient } = require('discord.js')
+const { Guild, MessageEmbed, WebhookClient } = require('discord.js');
+const { NEW_GUILD_ADDED_WEBHOOK } = require('../../Structures/config');
 module.exports = {
   name: 'guildCreate',
   /** 
@@ -39,7 +40,7 @@ module.exports = {
       .setTimestamp();
 
     try {
-      new WebhookClient({ url: 'https://discord.com/api/webhooks/989881550634094602/KrkoXOeXkNtpaypxvkEPeWa-MpgLQE3vYbpCtcXblsQx-XBQHLxn8GJkxeA7rr9mI5N7' }
+      new WebhookClient({ url: NEW_GUILD_ADDED_WEBHOOK }
       ).send({ embeds: [embed] });
     } catch (error) {
       console.error(error);

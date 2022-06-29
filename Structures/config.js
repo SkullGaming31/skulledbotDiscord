@@ -11,6 +11,7 @@ require('dotenv').config();
  * @prop {string} DAYD_WELCOME_TOKEN Webhook token for the DAYD discord server welcome channel
  * @prop {string} DAYD_WELCOME_ID Webhook ID for the DAYD discord server welcome channel
  * @prop {string} ERROR_LOG_CHANNEL Channel where all logs are sent
+ * @prop {string} NEW_GUILD_ADDED_WEBHOOK Webhook url for new guilds added
  * @prop {string} MONGO_USERNAME Mongo DB Username
  * @prop {string} MONGO_PASSWORD Mongo DB Password
  * @prop {string} MONGO_DATABASE Mongo Database Name
