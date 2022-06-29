@@ -45,7 +45,7 @@ module.exports = {
 				member.roles.add('879461309870125147');
 				break;
 			case '985309600347717672':
-				welcomeChannel.send({ content: `${member}`, embeds: [welcomeChannel] });
+				welcomeChannel.send({ content: `${member}`, embeds: [Welcome] });
 				break;
 		}
 	},
