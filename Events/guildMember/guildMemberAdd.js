@@ -33,7 +33,7 @@ module.exports = {
 					inline: true
 				}
 			])
-			.setFooter({ text: `ID: ${user.id}`, iconURL: `${guild.iconURL({ dynamic: true })}` });
+			.setFooter({ text: `ID: ${user.id}`, iconURL: `${guild.iconURL({ dynamic: true }) || ''}` });
 
 		switch (guild.id) {
 			case '797740303176040498':// My Guild ID
