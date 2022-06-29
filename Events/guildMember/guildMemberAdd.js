@@ -11,8 +11,8 @@ module.exports = {
 			token: config.WELCOMER_TOKEN
 		});
 		const welcomeChannel = new WebhookClient({
-			id: '989108668391907338',
-			token: 'AerwQm5bGbELTV2iSPiOq9BwzqfVRvcg_dNxALj2iJZCIfv4m3eFwUn34vLDNv7D95Dn'
+			id: config.DAYD_WELCOME_ID,
+			token: config.DAYD_WELCOME_TOKEN
 		});
 		const { user, guild } = member;
 
