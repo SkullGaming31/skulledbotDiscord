@@ -1,5 +1,5 @@
 const { MessageEmbed, Message } = require('discord.js');
-const DB = require('../../Structures/Schemas/settingsDB');
+// const DB = require('../../Structures/Schemas/settingsDB');
 require('dotenv').config();
 
 module.exports = {
@@ -12,7 +12,6 @@ module.exports = {
 	 */
 	async execute(message) {
 		const { guild, member } = message;
-		const Data = await DB.findOne({ GuildID: guild.id });
 
 		// const nowLive = process.env.DISCORD_PROMOTE_CHANNEL_ID;
 		const linkWhitelist = [
@@ -24,7 +23,7 @@ module.exports = {
 		];
 		// if (message.member.permissions.has('MANAGE_MESSAGES')) return;
 		// if (member.roles.cache.find(role => role.name === 'v.i.p')) return;
-		const targetChannel = guild.channels.cache.find(channel => channel.id === Data.LoggingChannel);// Logs Channel
+		const targetChannel = guild.channels.cache.get('838158641072832562');// Logs Channel
 		let foundInText = false;
 
 		const nowlive = message.guild.channels.cache.get('799642035371638794'); // now-live ChannelID Data.PromotionChannel
@@ -62,6 +61,5 @@ module.exports = {
 				}
 			}
 		}
-		if (!Data) return;
 	},
 };

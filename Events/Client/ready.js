@@ -11,8 +11,8 @@ module.exports = {
 	async execute(client) {
 		console.log(`Logged in as ${client.user.tag}`);
 		const tbd = await client.guilds.fetch();
+		console.log(`currently in ${tbd.size} guilds!`)
 		client.user.setActivity(` over ${tbd.size} guilds`, { type: 'WATCHING' });
-		// client.guilds.cache.get('797740303176040498').commands.set([]); // remove ALL commands
 
 		if (!MONGO_DATABASE) return;
 		mongoose.connect(MONGO_DATABASE, {
