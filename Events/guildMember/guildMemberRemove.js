@@ -8,7 +8,7 @@ module.exports = {
 	async execute(member) {
 		const { guild } = member;
 
-		// console.log('Member left: ', member.displayName);
+		console.log('Member left: ', member);
 		const personalDiscord = guild.channels.cache.get('838158641072832562');// personal discord Logs Channel ID
 		const daydDiscord = guild.channels.cache.get('989110717837873172');// dayd discord Logs Channel ID
 
