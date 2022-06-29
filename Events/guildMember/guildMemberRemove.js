@@ -15,7 +15,8 @@ module.exports = {
 		const embed = new MessageEmbed()
 			.setTitle('MEMBER LEFT')
 			.setColor('RED')
-			.setDescription(`\`${member}\` left the server`);
+			.setDescription(`\`${member.user}\` left the server`)
+			.setFooter({ text: `${member.id}`, iconURL: `${guild.iconURL({ dynamic: true }) || ''}` });
 
 		try {
 			switch (guild.id) {
