@@ -2,3 +2,4 @@
 .env
 crunch.json
 /auth
+test.json

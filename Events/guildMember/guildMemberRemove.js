@@ -16,7 +16,7 @@ module.exports = {
 			.setTitle('MEMBER LEFT')
 			.setColor('RED')
 			.setDescription(`\`${user.username}\` left the server`)
-			.setFooter({ text: `${member.id}`, iconURL: `${guild.iconURL({ dynamic: true }) || ''}` });
+			.setFooter({ text: `Members ID: ${member.id}`, iconURL: `${guild.iconURL({ dynamic: true }) || ''}` });
 
 		try {
 			switch (guild.id) {

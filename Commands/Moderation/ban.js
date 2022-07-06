@@ -26,16 +26,16 @@ module.exports = {
 	],
 
 	/**
-   * 
-   * @param {CommandInteraction} interaction 
-   */
+	 * 
+	 * @param {CommandInteraction} interaction 
+	 */
 	async execute(interaction) {
 		const { guild, user, options } = interaction;
 
 		const User = options.getUser('target');
-		let reason = options.getString('reason');
 		const Target = guild.members.cache.get(User.id);
-		let Days = options.getNumber('days');
+		let reason = options.getString('reason') || 'No Reason Provided';
+		let Days = options.getNumber('days') || 7;
 
 		await interaction.deferReply();
 		// check permissions so mods cant ban admins.
@@ -48,8 +48,6 @@ module.exports = {
 			.addField('Reason: ', `${reason}`, true);
 
 		try {
-			if (!Days) Days = 7;
-			if (!reason) reason = 'No Reason Provided';
 			await User.send({ embeds: [bannedEmbed] });
 			Target.ban({ reason, days: Days });
 			interaction.editReply({ content: `**${Target.displayName}** has been banned from the guild for **${reason}**` });

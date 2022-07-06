@@ -26,7 +26,6 @@ messages.read
 guilds
 webhook.incoming
 guilds.members.read
-
 guilds.join
 email
 gdm.join

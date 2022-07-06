@@ -20,9 +20,13 @@ const client = new Client({
 // require('../handlers/Anti-Crash')(client);
 
 client.commands = new Collection();
-['Events', 'Commands', 'Anti-Crash'].forEach(handler => {
+client.buttons = new Collection();
+
+['Events', 'Commands', 'Anti-Crash', 'Buttons'].forEach(handler => {
 	require(`../handlers/${handler}`)(client, PG, Ascii);
 });
+
+require('../handlers/Economy');
 
 
 

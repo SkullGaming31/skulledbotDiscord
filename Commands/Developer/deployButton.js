@@ -2,7 +2,7 @@ const { MessageEmbed, MessageActionRow, MessageButton, CommandInteraction } = re
 
 module.exports = {
   name: 'deploy',
-  description: 'Deploy a testing button',
+  description: 'Deploy a test button',
   permission: 'MANAGE_MESSAGES',
 
   /**
@@ -11,12 +11,13 @@ module.exports = {
    */
   async execute(interaction) {
     const Embed = new MessageEmbed()
-      .setDescription('Click Here')
+      .setDescription('Click the button, you know you wanna!')
       .setColor('GREEN');
 
     const Row = new MessageActionRow();
     Row.addComponents(
-      new MessageButton().setCustomId('age-submit').setLabel('Answer').setStyle('SUCCESS')
+      new MessageButton().setCustomId('test').setLabel('Test').setStyle('SUCCESS'),
+      new MessageButton().setCustomId('test2').setLabel('Test 2').setStyle('PRIMARY')
     );
     interaction.reply({ embeds: [Embed], components: [Row] });
   }
