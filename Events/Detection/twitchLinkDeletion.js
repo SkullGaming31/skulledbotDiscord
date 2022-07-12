@@ -11,7 +11,7 @@ module.exports = {
 	 * @returns 
 	 */
 	async execute(message) {
-		const { guild, member } = message;
+		const { guild, member, channel } = message;
 
 		// const nowLive = process.env.DISCORD_PROMOTE_CHANNEL_ID;
 		const linkWhitelist = [
@@ -21,8 +21,11 @@ module.exports = {
 			'https://tiktok.com/', 'tiktok.com/',
 			'https://github.com/', 'github.com/',
 		];
-		// if (message.member.permissions.has('MANAGE_MESSAGES')) return;
+		// if (member.permissions.has('MANAGE_MESSAGES') ? true : null) return;
 		// if (member.roles.cache.find(role => role.name === 'v.i.p')) return;
+		if (channel.id === '798448297257074690') return;// added these cause the bot was deleting messages in the moderator chat
+		/* havnt figure out the new permission system yet for dening the bot moderating messages */
+		if (channel.parentId === '940754005758472192' || channel.parentId === '821767829811494932') return; // parent channel id for ticket system if you have one, if not delete this line
 		const targetChannel = guild.channels.cache.get('838158641072832562');// Logs Channel
 		let foundInText = false;
 
