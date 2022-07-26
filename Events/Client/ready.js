@@ -10,16 +10,10 @@ module.exports = {
  * @param {Client} client 
  */
 	async execute(client) {
-		const { user, ws } = client;
-		console.log(`${client.user.tag} is online!`);
+		const { user, guilds } = client;
+		console.log(`${user.tag} is online!`);
+		user.setActivity({ name: ` over ${guilds.cache.size} Guilds`, type: ActivityType.Watching });
 
-		setInterval(() => {
-			const ping = ws.ping;
-			user.setActivity({
-				name: `Ping: ${ping}ms`,
-				type: ActivityType.Watching
-			});
-		}, ms('20s'));
 
 		if (!MONGO_URL) return;
 		mongoose.connect(MONGO_URL, {

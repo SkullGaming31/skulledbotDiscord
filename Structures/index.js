@@ -7,12 +7,14 @@ const Ascii = require('ascii-table');
 const config = require('./config');
 
 const { Channel, GuildMember, GuildScheduledEvent, Message, Reaction, ThreadMember, User } = Partials;
+const { Guilds, GuildMessages, GuildMembers, GuildMessageReactions } = GatewayIntentBits;
 
 const client = new Client({
 	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.GuildMembers
+		Guilds,
+		GuildMessages,
+		GuildMembers,
+		GuildMessageReactions
 	],
 	partials: [
 		Channel, GuildMember,
@@ -21,7 +23,7 @@ const client = new Client({
 		User
 	],
 	allowedMentions: { parse: ['everyone', 'roles', 'users'] },
-	rest: { timeout: ms('1m') }
+	rest: { timeout: ms('5m') }
 });
 
 client.events = new Collection();
@@ -33,4 +35,8 @@ Handlers.forEach(handler => {
 });
 module.exports = client;
 
-client.login(config.DISCORD_BOT_TOKEN);
+if (process.env.NODE_ENV === 'development') {
+	client.login(config.DEV_DISCORD_BOT_TOKEN);
+} else {
+	client.login(config.DISCORD_BOT_TOKEN);
+}
