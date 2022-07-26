@@ -1,48 +1,49 @@
-const { CommandInteraction } = require('discord.js');
+const { ChatInputCommandInteraction, ApplicationCommandOptionType, ChannelType } = require('discord.js');
 const DB = require('../../Structures/Schemas/settingsDB');
 
 module.exports = {
 	name: 'settings',
 	description: 'guild settings for some channels',
-	permission: 'MANAGE_GUILD',
+	UserPerms: ['ManageGuild'],
+	BotPerms: ['ManageGuild'],
 	options: [
 		{
 			name: 'logging',
 			description: 'Select the logging channel',
-			type: 'CHANNEL',
+			type: ApplicationCommandOptionType.Channel,
 			required: true,
-			channelTypes: ['GUILD_TEXT']
+			channelTypes: [ChannelType.GuildText]
 		},
 		{
 			name: 'admin',
 			description: 'Select your administrator role',
-			type: 'ROLE',
+			type: ApplicationCommandOptionType.Role,
 			required: true
 		},
 		{
 			name: 'moderator',
 			description: 'Select your moderator role',
-			type: 'ROLE',
+			type: ApplicationCommandOptionType.Role,
 			required: true
 		},
 		{
 			name: 'nowlive',
 			description: 'Select the Now Live channel',
-			type: 'CHANNEL',
+			type: ApplicationCommandOptionType.Channel,
 			required: false,
-			channelType: ['GUILD_TEXT']
+			channelType: [ChannelType.GuildText]
 		},
 		{
 			name: 'suggestions',
 			description: 'Choose your suggestion channel for all suggestions to be posted too',
-			type: 'CHANNEL',
+			type: ApplicationCommandOptionType.Channel,
 			required: false,
-			channelType: ['GUILD_TEXT']
+			channelType: [ChannelType.GuildText]
 		}
 	],
 	/**
 	 * 
-	 * @param {CommandInteraction} interaction
+	 * @param {ChatInputCommandInteraction} interaction
 	 */
 	async execute(interaction) {
 		const { guild, options } = interaction;

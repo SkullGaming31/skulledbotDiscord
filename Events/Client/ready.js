@@ -1,27 +1,31 @@
-const { Client } = require('discord.js');
+const { Client, ActivityType } = require('discord.js');
+const { MONGO_URL } = require('../../Structures/config');
 const mongoose = require('mongoose');
-const { MONGO_DATABASE } = require('../../Structures/config');
-
+const ms = require('ms');
 module.exports = {
 	name: 'ready',
 	once: true,
 	/**
-	 * @param {Client} client 
-	 */
+ * 
+ * @param {Client} client 
+ */
 	async execute(client) {
-		console.log(`Logged in as ${client.user.tag}`);
-		const tbd = await client.guilds.fetch();
-		console.log(`currently in ${tbd.size} guilds!`)
-		client.user.setActivity(` over ${tbd.size} guilds`, { type: 'WATCHING' });
+		const { user, ws } = client;
+		console.log(`${client.user.tag} is online!`);
 
-		if (!MONGO_DATABASE) return;
-		mongoose.connect(MONGO_DATABASE, {
+		setInterval(() => {
+			const ping = ws.ping;
+			user.setActivity({
+				name: `Ping: ${ping}ms`,
+				type: ActivityType.Watching
+			});
+		}, ms('20s'));
+
+		if (!MONGO_URL) return;
+		mongoose.connect(MONGO_URL, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true
-		}).then(() => {
-			console.log('the client is now connected to the database');
-		}).catch((err) => {
-			console.error(err);
-		});
-	},
+		}).then(() => { console.log('Connected to the Database'); })
+			.catch((err) => console.log(err));
+	}
 };

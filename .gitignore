@@ -1,5 +1,2 @@
 /node_modules
 .env
-crunch.json
-/auth
-test.json

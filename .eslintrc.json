@@ -1,13 +1,12 @@
 {
     "env": {
-        "browser": false,
-        "node": true,
         "commonjs": true,
-        "es2021": true
+        "es2021": true,
+        "node": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 12
+        "ecmaVersion": "latest"
     },
     "rules": {
         "indent": [
@@ -19,15 +18,13 @@
             "windows"
         ],
         "quotes": [
-            "warning",
+            "error",
             "single"
         ],
         "semi": [
             "error",
             "always"
         ],
-        "no-unused-vars": "off",
-        "no-case-declarations": "off",
-        "no-undef": "off"
+        "no-unused-vars":"off"
     }
 }

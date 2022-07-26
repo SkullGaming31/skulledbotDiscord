@@ -9,6 +9,7 @@ module.exports = model('TicketSetup', new Schema({
 	Everyone: String,
 	BotRole: String,
 	Description: String,
+	Color: String,
 	Buttons: [String],
 })
 );

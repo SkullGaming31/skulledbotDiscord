@@ -1,33 +1,36 @@
-const { Client, Intents, Collection } = require('discord.js');
-const fs = require('fs');
+const { Client, Partials, GatewayIntentBits, Collection } = require('discord.js');
+const ms = require('ms');
 const { promisify } = require('util');
 const glob = require('glob');
 const PG = promisify(glob);
 const Ascii = require('ascii-table');
 const config = require('./config');
 
-require('../database/index');
+const { Channel, GuildMember, GuildScheduledEvent, Message, Reaction, ThreadMember, User } = Partials;
 
 const client = new Client({
 	intents: [
-		Intents.FLAGS.GUILDS,
-		Intents.FLAGS.GUILD_MESSAGES,
-		Intents.FLAGS.GUILD_MEMBERS,
-		Intents.FLAGS.GUILD_WEBHOOKS
-	]
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.GuildMembers
+	],
+	partials: [
+		Channel, GuildMember,
+		GuildScheduledEvent, Message,
+		Reaction, ThreadMember,
+		User
+	],
+	allowedMentions: { parse: ['everyone', 'roles', 'users'] },
+	rest: { timeout: ms('1m') }
 });
 
-// require('../handlers/Anti-Crash')(client);
-
+client.events = new Collection();
 client.commands = new Collection();
-client.buttons = new Collection();
 
-['Events', 'Commands', 'Anti-Crash', 'Buttons'].forEach(handler => {
-	require(`../handlers/${handler}`)(client, PG, Ascii);
+const Handlers = ['Events', 'Commands', 'Errors'];
+Handlers.forEach(handler => {
+	require(`./Handlers/${handler}`)(client, PG, Ascii);
 });
-
-require('../handlers/Economy');
-
-
+module.exports = client;
 
 client.login(config.DISCORD_BOT_TOKEN);

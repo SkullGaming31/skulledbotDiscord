@@ -1,53 +1,101 @@
-const { CommandInteraction, Permissions, MessageEmbed } = require('discord.js');
-
+/* eslint-disable indent */
+const { Client, ChatInputCommandInteraction, ApplicationCommandOptionType, EmbedBuilder, Colors, ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType } = require('discord.js');
+const ms = require('ms');
+const EditReply = require('../../Systems/editReply');
 module.exports = {
 	name: 'kick',
-	description: 'kick a member from the server',
-	permission: 'KICK_MEMBERS',
+	description: 'Kicks a member from the guild',
+	UserPerms: ['KickMembers'],
+	BotPerms: ['KickMembers'],
+	category: 'Moderation',
 	options: [
 		{
-			name: 'target',
-			description: 'the target you want to kick from the guild',
-			type: 'USER',
+			name: 'user',
+			description: 'select a member to kick from the guild',
+			type: ApplicationCommandOptionType.User,
 			required: true
 		},
 		{
 			name: 'reason',
-			description: 'the reason you want to kick the target from the guild',
-			type: 'STRING',
+			description: 'the reason you are kicking this member',
+			type: ApplicationCommandOptionType.String,
 			required: false
 		}
 	],
 	/**
 	 * 
-	 * @param {CommandInteraction} interaction 
+	 * @param {ChatInputCommandInteraction} interaction 
+	 * @param {Client} client
 	 */
-	async execute(interaction) {
-		const { guild, options } = interaction;
+	async execute(interaction, client) {
+		await interaction.deferReply({ ephemeral: true });
 
-		const User = options.getUser('target');
-		let reason = options.getString('reason');
-		const Target = guild.members.cache.get(User.id);
+		const { options, user, guild } = interaction;
+		const member = options.getMember('user');
+		const reason = options.getString('reason') || 'No Reason Provided';
+		if (member.id === user.id) return EditReply(interaction, '❌', 'You can not kick yourself from the guild');
+		if (guild.ownerId === member.id) return EditReply(interaction, '❌', 'Someones on a Power Tripping Session, you cant kick the owner, the guild would be deleted.');
+		if (guild.members.me.roles.highest.position <= member.roles.highest.position) return EditReply(interaction, '❌', 'you cant kick a member of your level or higher');
+		if (interaction.member.roles.highest.position <= member.roles.highest.position) return EditReply(interaction, '❌', 'you cant kick a member of your level or higher');
 
-		if (Target.roles.highest.position >= interaction.member.roles.highest.position) {
-			return interaction.followUp({ content: `${interaction.user.tag}, you cant take action on this user as there role is highter then yours` });
-		}
-
-		interaction.deferReply();
-		if (!reason) reason = 'No Reason Provided';
-		const removedEmbed = new MessageEmbed()
-			.setTitle('KICKED')
-			.setAuthor({ name: `${User.username}`, iconURL: `${User.displayAvatarURL({ dynamic: true })}` })
-			.setColor('RED')
-			.addField('Kicked from: ', `${guild.name}`, false)
-			.addField('Reason: ', `${reason}`, false)
-			.setFooter({ text: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}` })
-			.setTimestamp();
-		try {
-			await User.send({ embeds: [removedEmbed] });
-			Target.kick(reason);
-		} catch (err) { console.error(err); console.log('users dm\'s are diabled'); }
-
-		interaction.followUp({ content: `kicked @${User.tag} Successfully`, embeds: [removedEmbed] });
+		const kickEmbed = new EmbedBuilder().setColor(Colors.Blue);
+		const row = new ActionRowBuilder().addComponents(
+			new ButtonBuilder().setStyle(ButtonStyle.Danger).setCustomId('kick-yes').setLabel('Yes'),
+			new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId('kick-no').setLabel('No')
+		);
+		const page = await interaction.editReply({
+			embeds: [
+				kickEmbed.setDescription('**⚠ | do you really wanna kick this member?**')
+			],
+			components: [row]
+		});
+		const col = await page.createMessageComponentCollector({
+			componentType: ComponentType.Button,
+			time: ms('15s')
+		});
+		col.on('collect', i => {
+			if (i.user.id !== user.id) return;
+			switch (i.customId) {
+				case 'kick-yes':
+					member.kick(reason);
+					interaction.editReply({
+						embeds: [
+							kickEmbed.setDescription(`✔ | ${member} **has been kicked for : ${reason}**`)
+						],
+						components: []
+					});
+					member.send({
+						embeds: [
+							new EmbedBuilder()
+								.setColor(Colors.Red)
+								.addFields([
+									{
+										name: 'Reason',
+										value: `you were kicked from ${guild} for ${reason}`,
+										inline: true
+									}
+								])
+						]
+					}).catch(err => {
+						if (err.code !== 50007) return console.error('Users Dm\'s are turned off', err);
+					});
+					break;
+				case 'kick-no':
+					interaction.editReply({
+						embeds: [
+							kickEmbed.setDescription('✅ | Kick Request Canceled')
+						],
+						components: []
+					});
+					break;
+			}
+		});
+		col.on('end', (collected) => {
+			if (collected.size > 0) return;
+			interaction.editReply({
+				embeds: [kickEmbed.setDescription('❌ | you did not provide a valid response in time')],
+				components: []
+			});
+		});
 	}
 };

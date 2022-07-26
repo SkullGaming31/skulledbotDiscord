@@ -1,31 +1,30 @@
-const { CommandInteraction, MessageEmbed } = require('discord.js');
+const { ChatInputCommandInteraction, EmbedBuilder, Colors, ApplicationCommandOptionType } = require('discord.js');
 module.exports = {
 	name: 'nickname',
 	description: 'manage someones nickname in your server',
-	permission: 'MANAGE_NICKNAME',
+	UserPerms: ['ManageNicknames'],
+	BotPerms: ['ManageNicknames'],
 	options: [
 		{
 			name: 'target',
 			description: 'The target you want to manage the nickname for',
-			type: 'USER',
+			type: ApplicationCommandOptionType.User,
 			required: true
 		},
 		{
 			name: 'nickname',
 			description: 'the nickname you want to give them in your server',
-			type: 'STRING',
-			required: false
+			type: ApplicationCommandOptionType.String
 		},
 		{
 			name: 'reason',
 			description: 'The reason you are changing there nickname in the server',
-			type: 'STRING',
-			required: false
+			type: ApplicationCommandOptionType.String
 		},
 	],
 	/**
 	 * 
-	 * @param {CommandInteraction} interaction 
+	 * @param {ChatInputCommandInteraction} interaction 
 	 */
 	async execute(interaction) {
 		const { options, guild } = interaction;
@@ -34,10 +33,10 @@ module.exports = {
 		const Reason = options.getString('reason') || 'No Reason Provided';
 		const setNickname = options.getString('nickname') || null;
 
-		const embed = new MessageEmbed()
+		const embed = new EmbedBuilder()
 			.setTitle('NICKNAME EDITED')
 			.setDescription(`Nickname has been successfully changed to ${setNickname}. Reason: ${Reason}`)
-			.setColor('RED');
+			.setColor(Colors.Red);
 		try {
 			await Target.setNickname(setNickname, Reason);
 			interaction.reply({ embeds: [embed], ephemeral: true });
@@ -45,4 +44,4 @@ module.exports = {
 			console.error(error);
 		}
 	}
-}
+};

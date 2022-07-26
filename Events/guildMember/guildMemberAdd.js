@@ -1,5 +1,7 @@
-const { MessageEmbed, GuildMember, WebhookClient } = require('discord.js');
+/* eslint-disable indent */
+const { GuildMember, WebhookClient, Colors, EmbedBuilder } = require('discord.js');
 const config = require('../../Structures/config');
+
 module.exports = {
 	name: 'guildMemberAdd',
 	/**
@@ -10,14 +12,10 @@ module.exports = {
 			id: config.WELCOMER_ID,
 			token: config.WELCOMER_TOKEN
 		});
-		const welcomeChannel = new WebhookClient({
-			id: config.DAYD_WELCOME_ID,
-			token: config.DAYD_WELCOME_TOKEN
-		});
 		const { user, guild } = member;
 
-		const Welcome = new MessageEmbed()
-			.setColor('#32CD32')
+		const Welcome = new EmbedBuilder()
+			.setColor(Colors.LightGrey)
 			.setAuthor({ name: user.tag, iconURL: user.avatarURL({ dynamic: true }) })
 			.setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
 			.setDescription(`Welcome \`${member.displayName}\` to the **${guild.name}**`)
@@ -40,12 +38,6 @@ module.exports = {
 				member.roles.add('799629973270298675');
 				await guild.channels.cache.get('989844857684119603').setName(`Members: ${guild.memberCount}`);
 				Welcomer.send({ content: `${member}`, embeds: [Welcome] });
-				break;
-			case '819180459950473236':// mods Guild ID
-				member.roles.add('879461309870125147');
-				break;
-			case '985309600347717672':
-				welcomeChannel.send({ content: `${member}`, embeds: [Welcome] });
 				break;
 		}
 	},
