@@ -5,6 +5,7 @@ const { DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, DISCORD_REDIRECT_URI } = requi
 
 const app = express();
 
+
 const instance = axios.create({ baseURL: 'https://discord.com/api', });
 
 if (process.env.NODE_ENV === 'production') {
@@ -27,13 +28,13 @@ if (process.env.NODE_ENV === 'production') {
 							'Content-Type': 'application/x-www-form-urlencoded'
 						}
 					});
-				const { access_token } = response.data;
+				const { access_token, refresh_token } = response.data;
 				const { data: userResponse } = await axios.get('https://discord.com/api/v10/users/@me', {
 					headers: {
 						'Authorization': `Bearer ${access_token}`
 					}
 				});
-				res.send(userResponse);
+				res.send({ User: userResponse });
 			} catch (error) {
 				console.error(error);
 				res.sendStatus(400);
@@ -60,13 +61,14 @@ if (process.env.NODE_ENV === 'production') {
 							'Content-Type': 'application/x-www-form-urlencoded'
 						}
 					});
-				const { access_token } = response.data;
+				const { access_token, refresh_token } = response.data;
 				const { data: userResponse } = await axios.get('https://discord.com/api/v10/users/@me', {
 					headers: {
 						'Authorization': `Bearer ${access_token}`
 					}
 				});
-				res.send(userResponse);
+				console.log(response.data);
+				res.send({ User: userResponse });
 			} catch (error) {
 				console.error(error);
 				res.sendStatus(400);
@@ -110,4 +112,4 @@ if (process.env.NODE_ENV === 'production') {
 	});
 }
 
-app.listen(3001, () => console.log('http://localhost:3001'));
+app.listen(process.env.PORT || 3001, () => console.log(`http://localhost:${process.env.PORT || 3001}`));
