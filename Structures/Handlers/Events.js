@@ -1,4 +1,4 @@
-const { Events } = require('../../Structures/Validation/eventNames');
+const { Events } = require('../Validation/eventNames');
 
 
 module.exports = async (client, PG, Ascii) => {
