@@ -1,10 +1,10 @@
 const { ChatInputCommandInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, Colors, ButtonStyle, ApplicationCommandOptionType } = require('discord.js');
-const DB = require('../../Structures/Schemas/suggestDB');
-const settingsDB = require('../../Structures/Schemas/settingsDB');
+const DB = require('../../Structures/Schemas/SuggestDB');
+const Reply = require('../../Systems/reply');
 
 module.exports = {
 	name: 'suggest',
-	description: 'give me a suggestion on how i could improve the discord or the DayZ Server',
+	description: 'give me a suggestion on how i could improve the discord or my twitch channel',
 	UserPerms: ['SendMessages'],
 	BotPerms: ['SendMessages'],
 	options: [
@@ -15,7 +15,8 @@ module.exports = {
 			required: true,
 			choices: [
 				{ name: 'Discord', value: 'Discord' },
-				{ name: 'Twitch', value: 'Twitch' }
+				{ name: 'Twitch', value: 'Twitch' },
+				{ name: 'Discord Bot', value: 'Discord Bot' }
 			]
 		},
 		{
@@ -36,9 +37,7 @@ module.exports = {
 		const Type = options.getString('type');
 		const Suggestion = options.getString('suggestion');
 
-		const Settings = await settingsDB.findOne({ GuildID: guildId });
-
-		const suggestionChannel = guild.channels.cache.get(Settings.SuggestionsChannel || '835420636750938114');// suggestions channel
+		const suggestionChannel = guild.channels.cache.get('835420636750938114');// suggestions channel
 
 		const Response = new EmbedBuilder()
 			.setColor(Colors.Blue)
@@ -56,10 +55,12 @@ module.exports = {
 		);
 
 		try {
-			interaction.reply({ content: 'Thank you for your suggestion', ephemeral: true });
+			// interaction.reply({ content: 'Thank you for your suggestion', ephemeral: true });
+			Reply(interaction, '♥', 'Thank you for your suggestion', true);
 			const M = await suggestionChannel.send({ embeds: [Response], components: [Buttons], fetchReply: true });
 			await DB.create({
-				GuildID: guildId, MessageID: M.id, Details: [
+				GuildID: guildId, MessageID: M.id,
+				Details: [
 					{
 						MemberID: member.id,
 						Type: Type,
@@ -70,6 +71,5 @@ module.exports = {
 		} catch (error) {
 			console.log(error);
 		}
-		if (!Settings) return;
 	}
 };

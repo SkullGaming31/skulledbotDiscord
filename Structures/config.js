@@ -6,6 +6,7 @@ require('dotenv').config();
  * @prop {string} DISCORD_CLIENT_ID not used for anything atm
  * @prop {string} DISCORD_CLIENT_SECRET not used for anything atm
  * @prop {string} DISCORD_GUILD_ID ID of your discord server
+ * @prop {string} DISCORD_REDIRECT_URI Direct Url to send to application
  * @prop {string} MONGO_USERNAME Mongo DB Username
  * @prop {string} MONGO_PASSWORD Mongo DB Password
  * @prop {string} MONGO_DATABASE Mongo Database Name

@@ -1,6 +1,7 @@
 const { model, Schema } = require('mongoose');
 
-module.exports = model('suggestions', new Schema({
-  GuildID: String,
-  Details: Array
+module.exports = model('SuggestDB', new Schema({
+	GuildID: String,
+	MessageID: String,
+	Details: Array
 }));
