@@ -9,15 +9,10 @@ module.exports = {
 	BotPerms: ['SendMessages'],
 	options: [
 		{
-			name: 'type',
-			description: 'select the type',
+			name: 'title',
+			description: 'give your suggestion a title',
 			type: ApplicationCommandOptionType.String,
-			required: true,
-			choices: [
-				{ name: 'Discord', value: 'Discord' },
-				{ name: 'Twitch', value: 'Twitch' },
-				{ name: 'Discord Bot', value: 'Discord Bot' }
-			]
+			required: true
 		},
 		{
 			name: 'suggestion',
@@ -34,7 +29,7 @@ module.exports = {
 	async execute(interaction) {
 		const { options, guildId, guild, member, user } = interaction;
 
-		const Type = options.getString('type');
+		const Title = options.getString('title');
 		const Suggestion = options.getString('suggestion');
 
 		const suggestionChannel = guild.channels.cache.get('835420636750938114');// suggestions channel
@@ -44,7 +39,7 @@ module.exports = {
 			.setAuthor({ name: `${user.tag}`, iconURL: `${user.displayAvatarURL({ dynamic: true })}` })
 			.addFields(
 				{ name: 'Suggestion: ', value: Suggestion, inline: false },
-				{ name: 'Type: ', value: Type, inline: true },
+				{ name: 'Type: ', value: Title, inline: true },
 				{ name: 'Status: ', value: 'Pending..', inline: true }
 			).setTimestamp();
 
@@ -63,7 +58,7 @@ module.exports = {
 				Details: [
 					{
 						MemberID: member.id,
-						Type: Type,
+						Type: Title,
 						Suggestion: Suggestion
 					}
 				]

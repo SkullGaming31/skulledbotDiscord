@@ -1,6 +1,8 @@
 /* eslint-disable indent */
 const { ButtonInteraction, EmbedBuilder, Colors } = require('discord.js');
+const { Octokit } = require('octokit');
 const DB = require('../../Structures/Schemas/SuggestDB');
+const { GITHUB_PERSONAL_ACCESS_TOKEN } = require('../../Structures/config');
 
 module.exports = {
 	name: 'interactionCreate',
@@ -24,7 +26,26 @@ module.exports = {
 				case 'sugges-accept': {
 					Embed.fields[2] = { name: 'Status: ', value: 'Accepted', inline: true };
 					await message.edit({ embeds: [EmbedBuilder.from(Embed).setColor(Colors.Green)], components: [] });
-					if (Embed.fields[2].value === 'Accepted') { console.log('Suggestion Accepted, (Posting to Github Issues)'); }
+					if (Embed.fields[2].value === 'Accepted') {
+						const octokit = new Octokit({
+							auth: GITHUB_PERSONAL_ACCESS_TOKEN
+						});
+
+						const response = await octokit.request('POST /repos/{owner}/{repo}/issues', {
+							owner: 'skullgaming31',
+							repo: 'skulledbotV2',
+							title: Embed.fields[1].value,
+							body: Embed.fields[0].value,
+							// assignees: [
+							// 	'octocat'
+							// ],
+							// milestone: 1,
+							// labels: [
+							// 	'bug'
+							// ]
+						});
+						console.log('Suggestion Accepted, (Posting to Github Issues)');
+					}
 					interaction.reply({ content: 'Suggestion Accepted', ephemeral: true });
 				}
 					break;

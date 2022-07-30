@@ -24,6 +24,6 @@ module.exports = {
           await personalDiscord.send({ embeds: [embed] });
           break;
       }
-    } catch (err) { console.error(err); }
+    } catch (err) { console.error(err); return; }
   },
 };

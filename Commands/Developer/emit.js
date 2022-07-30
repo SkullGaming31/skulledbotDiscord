@@ -28,6 +28,10 @@ module.exports = {
 				{
 					name: 'guildDelete',
 					value: 'guildDelete'
+				},
+				{
+					name: 'guildMemberUpdate',
+					value: 'guildMemberUpdate'
 				}
 			]
 		}
@@ -45,11 +49,11 @@ module.exports = {
 		switch (choices) {
 			case 'guildMemberAdd':
 				client.emit('guildMemberAdd', interaction.member);
-				interaction.reply({ content: 'emitted the event!', ephemeral: true });
+				interaction.reply({ content: 'Emitted the event!', ephemeral: true });
 				break;
 			case 'guildMemberRemove':
 				client.emit('guildMemberRemove', interaction.member);
-				interaction.reply({ content: 'emitted the event!', ephemeral: true });
+				interaction.reply({ content: 'Emitted the event!', ephemeral: true });
 				break;
 			case 'guildCreate':
 				client.emit('guildCreate', interaction.guild);
@@ -57,7 +61,11 @@ module.exports = {
 				break;
 			case 'guildDelete':
 				client.emit('guildDelete', interaction.guild);
-				interaction.reply({ content: 'emitted the event', ephemeral: true });
+				interaction.reply({ content: 'Emitted the event', ephemeral: true });
+				break;
+			case 'guildMemberUpdate':
+				client.emit('guildMemberUpdate', interaction.member);
+				interaction.reply({ content: 'Emitted the event', ephemeral: true });
 				break;
 		}
 	}

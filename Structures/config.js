@@ -17,6 +17,7 @@ require('dotenv').config();
  * @prop {string} WELCOMER_ID Webbhook ID for the Welcome Channel
  * @prop {string} WELCOMER_TOKEN Webhook Token for the Welcome Channel
  * @prop {string} NEW_GUILD_ADDED_WEBHOOK Webhook for New Guilds Added
+ * @prop {string} GITHUB_PERSONAL_ACCESS_TOKEN access token to access githubs api
  */
 
 /**
